@@ -44,7 +44,7 @@ const[bearer,setBearer]=useState();
     redirect: 'follow'
   };
 
-fetch("https://money-track-project.herokuapp.com/transactions/transactions/", requestOptions)
+fetch("https://money-track-project.herokuapp.com//transactions/transactions/", requestOptions)
   .then(response => response.json())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));

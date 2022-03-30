@@ -18,12 +18,12 @@ function App() {
 
       useEffect(()=>{
       setBearer(localStorage.getItem('bearer'));
-      setUserId(localStorage.getItem('user-id'))
+      setUserId(localStorage.getItem('user-id'));
     })
 
   const[contactList,setContactlist]=useState([])
 
-  const addNewContact=()=>{
+  const addNewTransaction=()=>{
       setNewTransaction(true);
       var myHeaders = new Headers();
       myHeaders.append("bearer", bearer);
@@ -66,7 +66,7 @@ function App() {
 
 
 
-  const[Transactions,setTransactions]=useState([])
+  const[income,setIncome]=useState([])
 
   const showTransaction=()=>{
       var myHeaders = new Headers();
@@ -79,10 +79,10 @@ function App() {
       redirect: 'follow'
       };
 
-      fetch("https://money-track-project.herokuapp.com//transactions/transactions/", requestOptions)
+      fetch("https://money-track-project.herokuapp.com//transactions/transactions/?type=200", requestOptions)
       .then(response => response.json())
       .then(result => {console.log(result);
-      setTransactions(result.results);
+      setIncome(result.results);
       })
       .catch(error => console.log('error', error));
       }
@@ -113,7 +113,7 @@ function App() {
   }
  
   return (  
-    <div className='app'>
+    <div className='full'>
     
       <div className="navbar">
         <h1 style={{color:'#a17f1a'}}>$Money Track</h1>
@@ -125,7 +125,7 @@ function App() {
     <Row>
       <Col className="text-center"><h2>Income : $xxxxx</h2></Col>
       <Col ><Row><Col className="text-end">
-        <Button onClick={addNewContact}>Add New</Button></Col>
+        <Button onClick={addNewTransaction}>Add New</Button></Col>
         <Col><Button onClick={addContact}>Add contacts</Button>
       </Col></Row></Col>
       <Col className="text-center"><h2>Expense: $xxxxx</h2></Col>
@@ -134,56 +134,57 @@ function App() {
     <Row>
       <Col>
       
-      <ListGroup>
-      
-        <ListGroup.Item variant="dark">ABC</ListGroup.Item>
-        <ListGroup.Item variant="dark">ABC</ListGroup.Item>
-        <ListGroup.Item variant="dark">ABC</ListGroup.Item>
-        <ListGroup.Item variant="dark">ABC</ListGroup.Item>
-        </ListGroup>
+    <div className="container">
+      <ul className="responsive-table">
+        <li className="table-header">
+          <div className="col col-1">Name</div>
+          <div className="col col-2">Amount</div>
+          <div className="col col-3">Note</div>
+          <div className="col col-4">LastDate</div>
+        </li>
+        {income.map((con)=>(
+        <li className="table-row" key={con.idencode}>
+          <div className="col col-1" >{con.contact_details.name}</div>
+          <div className="col col-2" >{con.amount}</div>
+          <div className="col col-3" >{con.note}</div>
+          <div className="col col-4" >{con.last_date}</div>
+        </li>
+        ))}
+      </ul>
+    </div>
         </Col>
 
         <Col>
         
-      <ListGroup>
-        <ListGroup.Item variant="warning">ABC</ListGroup.Item>
-        <ListGroup.Item variant="warning">ABC</ListGroup.Item>
-        <ListGroup.Item variant="warning">ABC</ListGroup.Item>
-        <ListGroup.Item variant="warning">ABC</ListGroup.Item>
-        </ListGroup>
+        <div className="container">
+      <ul className="responsive-table">
+        <li className="table-header">
+          <div className="col col-1">Name</div>
+          <div className="col col-2">Amount</div>
+          <div className="col col-3">Note</div>
+          <div className="col col-4">LastDate</div>
+        </li>
+        {income.map((con)=>(
+        <li className="table-row" key={con.idencode}>
+          <div className="col col-1" >{con.contact_details.name}</div>
+          <div className="col col-2" >{con.amount}</div>
+          <div className="col col-3" >{con.note}</div>
+          <div className="col col-4" >{con.last_date}</div>
+          <button className='deleteButton' value={con.idencode} onClick={onDelete}>Delete</button>
+        </li>
+        ))}
+      </ul>
+    </div>
         </Col>
     </Row>
-    {/* <Row> */}
-    {/* <Col>
-    <h3 >Contacts</h3>
-    <ListGroup>
-      
-    {contactList.map((con)=>(
-        <ListGroup.Item variant="dark" key={con.idencode}>{con.name}</ListGroup.Item>
-      ))}
-      </ListGroup>
-      </Col> */}
-      {/* <Col>
-      
-    <ListGroup> */}
-      
-    {/* {Transactions.map((con)=>(
-        <ListGroup.Item variant="dark" key={con.idencode}>
-          <td>{con.contact} </td>
-          <td>{con.amount}</td>
-          <td>{con.last_date}</td> 
-          <td>{con.note}</td>
-          <Button variant="warning" value={con.idencode} onClick={onDelete}>Delete</Button>
-          </ListGroup.Item>
-      ))} */}
 
 <h3 style={{textAlign:"center",cursor:"pointer",}}  onClick={showTransaction}>Show Transaction</h3>
-<div class="price_table">
+{/* <div class="price_table">
   
-{Transactions.map((con)=>(
+{income.map((con)=>(
 
   <div class="package package_free"  key={con.idencode}>
-    <h2 className='h2'>{con.contact}</h2>
+    <h2 className='h2'>{con.contact_details.name}</h2>
     <div class="price">Rs.<div class="big">{con.amount}</div></div>
     <ul>
       <li>Last Date: {con.last_date}</li>
@@ -193,13 +194,8 @@ function App() {
   </div>
   
 ))}
-</div>
+</div> */}
 
-
-
-
-      {/* </ListGroup></Col> */}
-    {/* </Row> */}
     {newContact && <AddContacts setNewContact={setNewContact} />}
     {newTransaction && <AddTransaction setNewTransaction={setNewTransaction} contactList={contactList}/>}
     </div>
