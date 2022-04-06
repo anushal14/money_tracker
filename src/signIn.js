@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState} from 'react';
 import './SignIn.css';
 import { Link,Navigate } from 'react-router-dom';
 function SignIn(){
@@ -39,11 +39,9 @@ function SignIn(){
     localStorage.setItem('user-id',result.idencode);
     setResponseData(result);})
     .catch(error => console.log('error', error));
-    // console.log(responseData)
+    
     }
-    // localStorage.setItem('bearer',responseData.bearer);
-    // localStorage.setItem('user-id',responseData.idencode);
-    // useEffect(()=>{console.log(responseData)})
+    
 if(responseData.bearer){
   return <div>
     <Navigate to='/dashboard'/>

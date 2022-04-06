@@ -1,25 +1,53 @@
 import React, { useState,useEffect} from 'react'
-import { Link,Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import AddContacts from './AddContact';
 import './App.css';
-import {Container,Row,Col,Button,ListGroup} from 'react-bootstrap';
+import {Row,Col,Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaSignOutAlt } from 'react-icons/fa';
 import AddTransaction from './AddTransaction';
+import ShowTranction from './ShowTransaction';
+import ShowByPerson from './ShowByPerson';
 function App() {
   const[newContact,setNewContact]=useState(false);
   const[newTransaction,setNewTransaction]=useState(false);
+  const[ShowPersonDetail,setShowPersonDetail]=useState(false);
   // const addNew=()=>setNewTransaction(true);
   const addContact=()=>setNewContact(!newContact);
-
+  
 
   const[bearer,setBearer]=useState();
   const[userId,setUserId]=useState();
 
+  const[total,setTotal]=useState([])
       useEffect(()=>{
       setBearer(localStorage.getItem('bearer'));
       setUserId(localStorage.getItem('user-id'));
+
+      var myHeaders = new Headers();
+      myHeaders.append("bearer", localStorage.getItem('bearer'));
+      myHeaders.append("user-id", localStorage.getItem('user-id'));
+
+      var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+      fetch("https://money-track-project.herokuapp.com//accounts/dashboard/", requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result);
+      setTotal(result);
     })
+      .catch(error => console.log('error', error));
+      fetch("https://money-track-project.herokuapp.com/accounts/contact/", requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result);
+      setContactlist(result.results);
+      })
+      .catch(error => console.log('error', error));
+
+    },[])
 
   const[contactList,setContactlist]=useState([])
 
@@ -65,45 +93,21 @@ function App() {
       }
 
 
-
-  const[income,setIncome]=useState([])
-
-  const showTransaction=()=>{
-      var myHeaders = new Headers();
-      myHeaders.append("bearer",bearer);
-      myHeaders.append("user-id", userId);
-
-      var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-      };
-
-      fetch("https://money-track-project.herokuapp.com//transactions/transactions/?type=200", requestOptions)
-      .then(response => response.json())
-      .then(result => {console.log(result);
-      setIncome(result.results);
-      })
-      .catch(error => console.log('error', error));
-      }
-
-  const onDelete=(e)=>{
-      e.preventDefault();
-      var myHeaders = new Headers();
-      myHeaders.append("bearer",bearer);
-      myHeaders.append("user-id", userId);
-
-      var requestOptions = {
-      method: 'DELETE',
-      headers: myHeaders,
-      redirect: 'follow'
-      };
-
-      fetch(`https://money-track-project.herokuapp.com//transactions/transactions/${e.target.value}`, requestOptions)
-      .then(response => response.json())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+  //for transaction details
+    const[Personal,setPersonal]=useState([]);
+    const getPersonalData=(data)=>{
+      setPersonal(data);
     }
+  //for contact name and id
+    const[Personal2,setPersonal2]=useState([]);
+    const getPersonalData2=(data)=>{
+      setPersonal2(data);
+    }
+    const [typeReturn,setTypeReturn]=useState("")
+    const changeType=(e)=>{
+      setTypeReturn(e.target.value);
+    }
+
 
 
   if(logout){
@@ -115,91 +119,75 @@ function App() {
   return (  
     <div className='full'>
     
-      <div className="navbar">
-        <h1 style={{color:'#a17f1a'}}>$Money Track</h1>
-        
-        <Button variant="danger" onClick={onLogout}>Logout <FaSignOutAlt/></Button>
-      </div>
-      
-    <br></br>
-    <Row>
-      <Col className="text-center"><h2>Income : $xxxxx</h2></Col>
-      <Col ><Row><Col className="text-end">
-        <Button onClick={addNewTransaction}>Add New</Button></Col>
-        <Col><Button onClick={addContact}>Add contacts</Button>
-      </Col></Row></Col>
-      <Col className="text-center"><h2>Expense: $xxxxx</h2></Col>
-    </Row>
+    <div className="header">
+  <div className="left-zone">
     
-    <Row>
-      <Col>
-      
-    <div className="container">
-      <ul className="responsive-table">
-        <li className="table-header">
-          <div className="col col-1">Name</div>
-          <div className="col col-2">Amount</div>
-          <div className="col col-3">Note</div>
-          <div className="col col-4">LastDate</div>
-        </li>
-        {income.map((con)=>(
-        <li className="table-row" key={con.idencode}>
-          <div className="col col-1" >{con.contact_details.name}</div>
-          <div className="col col-2" >{con.amount}</div>
-          <div className="col col-3" >{con.note}</div>
-          <div className="col col-4" >{con.last_date}</div>
-        </li>
-        ))}
-      </ul>
+    <div className="logo">
+      <h2 >&#8377; Money Tracker</h2>
     </div>
-        </Col>
-
-        <Col>
-        
-        <div className="container">
-      <ul className="responsive-table">
-        <li className="table-header">
-          <div className="col col-1">Name</div>
-          <div className="col col-2">Amount</div>
-          <div className="col col-3">Note</div>
-          <div className="col col-4">LastDate</div>
-        </li>
-        {income.map((con)=>(
-        <li className="table-row" key={con.idencode}>
-          <div className="col col-1" >{con.contact_details.name}</div>
-          <div className="col col-2" >{con.amount}</div>
-          <div className="col col-3" >{con.note}</div>
-          <div className="col col-4" >{con.last_date}</div>
-          <button className='deleteButton' value={con.idencode} onClick={onDelete}>Delete</button>
-        </li>
-        ))}
-      </ul>
-    </div>
-        </Col>
-    </Row>
-
-<h3 style={{textAlign:"center",cursor:"pointer",}}  onClick={showTransaction}>Show Transaction</h3>
-{/* <div class="price_table">
-  
-{income.map((con)=>(
-
-  <div class="package package_free"  key={con.idencode}>
-    <h2 className='h2'>{con.contact_details.name}</h2>
-    <div class="price">Rs.<div class="big">{con.amount}</div></div>
-    <ul>
-      <li>Last Date: {con.last_date}</li>
-      <li>Note: {con.note}</li>
-    </ul>
-    <button className='deleteButton' value={con.idencode} onClick={onDelete}>Delete</button>
   </div>
-  
-))}
-</div> */}
+  <div className="search-input">
+    <input type="text" className="search"></input>
+  </div>
+  <div className="right-zone">
+    
+      <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img"/>
+      <div className="notification" onClick={onLogout}>
+      <FaSignOutAlt/>
+    </div>
+  </div>
+</div>
+
+    
+    <div className='appbody'>
+    <div className="table_head">
+      <div className="text-center"><h2 style={{color:"green",fontWeight:"bold"}}>INCOME:  &#8377;{total.Total_income}</h2></div>
+      
+        <Button onClick={addNewTransaction}>New Transaction</Button>
+        <Button value="100" onClick={changeType}>Show Income</Button>
+        <Button value="200" onClick={changeType}>Show Expense</Button>
+        <Button value="" onClick={changeType}>Show All</Button>
+      
+      <div className="text-center"><h2 style={{color:"red",fontWeight:"bold"}}>EXPENSE:  &#8377;{total.total_expense}</h2></div>
+    </div>
+<nav className="menu">
+	<div className="smartphone-menu-trigger"></div>
+  <header className="avatar">
+ 
+    <h2 className='menu_h2'>Contacts</h2>
+    <div onClick={addContact} className='plus'>&#43;</div>
+  </header>
+	<ul className='menu_ul'>
+  {contactList.map((con)=>(          
+    <li key={con.idencode} className="menu_li"><span className='menu_span'>{con.name}</span></li>
+    ))}
+  </ul>
+</nav>
+
+<main className="main">
+  <div className="helper">
+  <ShowTranction type={typeReturn} changeType={changeType} condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
+  </div>
+</main>
+</div>
+{/* 
+    <Row> 
+      <Col>
+        <ShowTranction type="100" condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
+      </Col>
+
+      <Col>
+        <ShowTranction type="200" condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
+      </Col>
+    </Row> */}
+
+    {ShowPersonDetail && <ShowByPerson Personal={Personal} Personal2={Personal2} setShowPersonDetail={setShowPersonDetail}/>}
 
     {newContact && <AddContacts setNewContact={setNewContact} />}
+    
     {newTransaction && <AddTransaction setNewTransaction={setNewTransaction} contactList={contactList}/>}
     </div>
-    
+  
   );
     
 }

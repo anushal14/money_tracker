@@ -7,7 +7,7 @@ function AddTransaction(props){
     amount: "",
     note: "",
     lastDate:"",
-    type:""
+    type:"100"
     });
     const handleChange=(e)=>{
       setTransaction({
@@ -54,7 +54,7 @@ fetch("https://money-track-project.herokuapp.com//transactions/transactions/", r
       amount: "",
       note: "",
       lastDate:"",
-      type:""
+      type:"100"
    }
    )
     }
@@ -105,7 +105,12 @@ fetch("https://money-track-project.herokuapp.com//transactions/transactions/", r
               </div>
               <div className="input-box">
                 <span className="details">Type</span>
-                <input type="text" placeholder="Enter Type" name="type" value={transaction.type} onChange={handleChange} required/>
+                <select className='dropdown' name="type" value={transaction.type} onChange={handleChange} >
+                {/* <option>Select a Type</option> */}
+                <option value="100">Income</option>
+                <option value="200">Expense</option>
+                </select>
+                
               </div>
             </div>
             
