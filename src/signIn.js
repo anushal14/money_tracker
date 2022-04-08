@@ -72,7 +72,7 @@ return (
                     <i class="fas fa-lock"></i>
                     <span style={{color:"red"}}>{responseData["password"]}</span> 
                 </div>
-
+                <span style={{color:"red"}}>{responseData.detail}</span>
                 <button onClick={handleSubmit} class="submit">Login</button>
             </form>
 		<p>Don't have an Account? <Link to='/signUp'>Sign Up</Link></p>
