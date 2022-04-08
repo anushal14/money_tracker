@@ -1,5 +1,6 @@
 import React,{ useState} from 'react';
 import './SignIn.css';
+import logo from './images/img.svg'
 import { Link,Navigate } from 'react-router-dom';
 function SignIn(){
     const[loginInput,setLoginInput]=useState({
@@ -48,43 +49,35 @@ if(responseData.bearer){
     </div>
 }
 return (
+<div className='loginbody'>
  
-  <div className='signinbody'> 
-      <div className="signinContainer" id="container">
-        
-    <div className="form-container sign-in-container">
-      <form method="POST" action="#" className="form" id="login">
-        <h1 className="form__title">Login</h1>
-        
-        <div className="form__input-group">
-          <label >Username: </label>
-          <input type="text" className="form__input" placeholder="Enter your username" name="username" value={loginInput.username} onChange={handleChange} required />
-          <span style={{color:"red"}}>{responseData["username"]}</span> 
+ <section class="loginside">
+        <img src={logo} alt=""/>
+    </section>
+
+    <section class="loginmain">
+        <div class="login-container">
+            <p class="logintitle">Welcome</p>
+            <div class="separator"></div>
+            <p class="welcome-message">Please, provide login credential to proceed and have access to all our services</p>
+
+            <form class="login-form">
+                <div class="loginform-control">
+                <input className='login-input' type="text"  placeholder="Username" name="username" value={loginInput.username} onChange={handleChange} required />
+                    <i class="fas fa-user"></i>
+                    <span  style={{color:"red"}}>{responseData["username"]}</span> 
+                </div>
+                <div class="loginform-control">
+                <input className='login-input' type="password" name="password" placeholder="Password" value={loginInput.password} onChange={handleChange} required/>
+                    <i class="fas fa-lock"></i>
+                    <span style={{color:"red"}}>{responseData["password"]}</span> 
+                </div>
+
+                <button onClick={handleSubmit} class="submit">Login</button>
+            </form>
+		<p>Don't have an Account? <Link to='/signUp'>Sign Up</Link></p>
         </div>
-        <div className="form__input-group">
-          <label>Password: </label>
-          <input type="password" className="form__input" name="password" placeholder="Enter your password" value={loginInput.password} onChange={handleChange} required/>
-          <span style={{color:"red"}}>{responseData["password"]}</span> 
-        </div>
-        <div className="form__input-group">
-          <button type="submit" className="form__button" onClick={handleSubmit}>Submit</button>
-        </div>
-        <span style={{color:"red"}}>{responseData["detail"]}</span> 
-     </form>
-    </div>
-    
-    
-   <div className="overlay-container">
-		<div className="overlay">
-			<div className="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<Link to='/signUp'><button className="ghost" id="signUp">Sign Up</button></Link>
-			</div>
-		</div>
-	</div>
- </div>
- 
+    </section>
   </div>
   );
 }
