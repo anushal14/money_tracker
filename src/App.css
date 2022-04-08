@@ -338,7 +338,11 @@ nav.close ~ .dashboard .top{
 .boxes .box.box3{
     background-color: var(--box3-color);
 }
-
+.user-img{
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 @media (max-width: 1000px) {
     nav{

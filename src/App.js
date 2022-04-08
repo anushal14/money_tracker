@@ -151,10 +151,13 @@ function App() {
             </ul>
             <ul class="nav-links">
             {contactList.map((con)=>(          
-                <li key={con.idencode}><a href="#">
+                <li class="mode" key={con.idencode}><a href="#">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">{con.name}</span>
-                </a></li>
+                </a>
+                <div class="mode-toggle">
+                <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img"/>
+                </div></li>
                  ))}
             </ul>
             
