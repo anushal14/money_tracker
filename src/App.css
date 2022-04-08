@@ -399,7 +399,7 @@ nav.close ~ .dashboard .top{
         width: 100% ;
     }
 }
-@media (max-width: 400px) {
+/* @media (max-width: 400px) {
     nav{
         width: 0px;
     }
@@ -438,7 +438,7 @@ nav.close ~ .dashboard .top{
         left: 0;
         width: 100%;
     }
-}
+} */
 
 
 .notification {
