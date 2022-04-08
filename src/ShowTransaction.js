@@ -78,50 +78,35 @@ function ShowTranction(props){
 
     return(
         <div className="container" >
-
-<div className="DisplayTable">
-		<tr>
-			<th><div className="h1table">Name</div></th>
-			<th><div className="h1table">Amount</div></th>
-			<th><div className="h1table">Note</div></th>
-			<th><div className="h1table">Last Date</div></th>
-		</tr>
-  {income.map((con)=>(
-        <tr className="table-row" key={con.idencode} onClick={()=>ShowPerson(con.idencode)}>
-          <td >{con.contact_details.name}</td>
-          <td className="col col-2" style={{color:"rgba(104, 11, 11, 0.907)",fontWeight:"bold"}}> &#8377; {con.amount} </td>
-          <td className="col col-3" >{con.note}</td>
-          <td className="col col-4" >{con.last_date}</td>
+  <table>
+     <thead>
+        <tr>
+          <th><label>Name</label></th>
+          <th><label>Amount</label></th>
+          <th><label>Due Date</label></th>
+          <th><label>Note</label></th>
+          <th><label>Action</label></th>
         </tr>
-        ))}
-        
-  </div>
+      </thead>
+      <tbody>
+        {income.map((con)=>(
+        <tr key={con.idencode}>
+      <td data-label="Name">{con.contact_details.name}</td>
+          <td data-label="Amount">&#8377; {con.amount}</td>
+          <td data-label="Due Date">{con.last_date}</td>
+          <td data-label="Note">{con.note}</td>
+          <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode)} class="btn-invoice">View Details</button></td>
+        </tr>
+      ))}
+      </tbody>
+      
+    </table>
+
   <div className="switchbutton">
         <button className="nextbtn" disabled={previous===null?true:false} value={previous} onClick={onSwitchPage}>&#8592;Previous</button>
         <button className="nextbtn" disabled={next===null?true:false} value={next} onClick={onSwitchPage}>Next&#8594;</button>
       </div>
 
-
-      {/* <ul className="responsive-table">
-        <li className="table-header">
-          <div className="col col-1">Name</div>
-          <div className="col col-2">Amount</div>
-          <div className="col col-3">Note</div>
-          <div className="col col-4">LastDate</div>
-        </li>
-        {income.map((con)=>(
-        <li className="table-row" key={con.idencode} onClick={()=>ShowPerson(con.idencode)}>
-          <div className="col col-1" >{con.contact_details.name}</div>
-          <div className="col col-2" >{con.amount}</div>
-          <div className="col col-3" >{con.note}</div>
-          <div className="col col-4" >{con.last_date}</div>
-        </li>
-        ))}
-        <div class="switchbutton">
-        <button disabled={previous===null?true:false} value={previous} onClick={onSwitchPage}>Previous</button>
-        <button disabled={next===null?true:false} value={next} onClick={onSwitchPage}>next</button>
-      </div>
-      </ul> */}
     </div>
     )
 }
