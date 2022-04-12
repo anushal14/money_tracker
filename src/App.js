@@ -1,4 +1,5 @@
 import React, { useState,useEffect} from 'react'
+import userImg from './images/user.png'
 import { Navigate } from 'react-router-dom';
 import AddContacts from './AddContact';
 import './App.css';
@@ -156,7 +157,7 @@ function App() {
                     <span class="link-name">{con.name}</span>
                 </a>
                 <div class="mode-toggle">
-                <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img"/>
+                <img src={(con.image!==null)?con.image:userImg} alt="" className="user-img"/>
                 </div></li>
                  ))}
             </ul>
@@ -209,11 +210,11 @@ function App() {
                         <span class="text">Total Income</span>
                         <span class="number">&#8377;{total.Total_income}</span>
                     </button>
-                    <div class="box box2">
+                    {/* <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Comments</span>
                         <span class="number">20,120</span>
-                    </div>
+                    </div> */}
                     <button value="200" onClick={changeType} class="box box3">
                         <i class="uil uil-share"></i>
                         <span class="text">Total Expense</span>
@@ -223,7 +224,7 @@ function App() {
             </div>
 
             <div class="activity">
-                <div class="title">
+                <div class="typetitle">
                     <i class="uil uil-clock-three"></i>
                     <span class="text">{typeName}</span>
                 </div>

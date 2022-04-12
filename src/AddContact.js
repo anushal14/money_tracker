@@ -4,8 +4,13 @@ function AddContacts(props){
   const[contact,setContact]=useState({
     name: "",
     phone: "",
-    address: ""
+    address: "",
+   
     });
+    const[image,setImage]=useState("");
+    const onFileAdd=(e)=>{
+      setImage(e.target.files[0]);
+    }
     const handleChange=(e)=>{
       setContact({
           ...contact,[e.target.name]:e.target.value
@@ -21,37 +26,35 @@ function AddContacts(props){
     // const[data,setData]=useState({})
 
     const handleSubmit=(e)=>{
+      console.log(image)
       e.preventDefault();
-
       var myHeaders = new Headers();
       myHeaders.append("bearer", bearer);
-      myHeaders.append("user-id", userId);
-      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("user-id",userId);
       
-      var raw = JSON.stringify({
-        "name": contact.name,
-        "phone": contact.phone,
-        "address":contact.address
-      });
+      var formdata = new FormData();
+      formdata.append("name", contact.name);
+      formdata.append("phone",  contact.phone);
+      formdata.append("address",contact.address);
+      formdata.append("image", image);
       
       var requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        body: raw,
+        body: formdata,
         redirect: 'follow'
       };
       
       fetch("https://money-track-project.herokuapp.com/accounts/contact/", requestOptions)
         .then(response => response.json())
-        .then(result => {console.log(result);
-        // setData(result);
-      })
+        .then(result => console.log(result))
         .catch(error => console.log('error', error));
 
         setContact(
          {name:'',
           phone:"",
-          address: ""
+          address: "",
+          image:""
         }
         )
 
@@ -88,6 +91,10 @@ function AddContacts(props){
               <div className="input-box">
                 <span className="details">Address</span>
                 <input type="text" placeholder="Enter Address" name="address" value={contact.address} onChange={handleChange} required/>
+              </div>
+              <div className="input-box">
+                <span className="details">Photo</span>
+                <input type="file"  name="image"  onChange={onFileAdd} required/>
               </div>
             </div>
             
