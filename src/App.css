@@ -105,7 +105,7 @@ nav.close .logo_name{
     pointer-events: none;
 }
 nav .menu-items{
-    margin-top: 40px;
+    margin-top: 32px;
     /* height: calc(100% - 90px); */
     display: flex;
     flex-direction: column;
@@ -144,8 +144,8 @@ body.dark li a:hover:before{
 }
 .menu-items li a .link-name{
     font-size: 18px;
-    font-weight: 400;
-    color: var(--black-light-color);    
+    font-weight: 500;
+    color: black;    
     transition: var(--tran-05);
 }
 nav.close li a .link-name{
@@ -160,14 +160,15 @@ body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name{
     color: var(--text-color);
 }
-.menu-items .logout-mode{
+/* .menu-items .logout-mode{
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
-}
+} */
 .menu-items .mode{
     display: flex;
     align-items: center;
     white-space: nowrap;
+    padding: 0.4em 0em;
 }
 .menu-items .mode-toggle{
     position: absolute;
@@ -364,6 +365,9 @@ nav.close ~ .dashboard .top{
         opacity: 0;
         pointer-events: none;
     }
+    .Contact_inc_exp{
+        opacity: 0;
+    }
     .contacts{
         opacity: 0;
         pointer-events: none;  
@@ -508,4 +512,11 @@ nav.close ~ .dashboard .top{
     align-items: center;
     justify-content: center;
     font-size: 24px;
+}
+.contactdetails{
+    display: flex;
+    flex-direction: column;
+}
+.Contact_inc_exp{
+    font-size: 13px;
 }

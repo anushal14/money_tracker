@@ -36,8 +36,8 @@ return(
     <h2 className='h2'>{props.Personal2.name}</h2>
     <div className="price">    <div className="big"> &#8377; {props.Personal.amount}</div></div>
     
-      <li style={{fontSize:"18px",fontWeight:"bold"}}>Last Date : {props.Personal.last_date}</li>
-      <li style={{fontSize:"18px",fontWeight:"bold"}}>Note : {props.Personal.note}</li>
+      <li className="list" style={{fontSize:"18px",fontWeight:"bold"}}>Last Date : {props.Personal.last_date}</li>
+      <li className="list" style={{fontSize:"18px",fontWeight:"bold"}}>Note : {props.Personal.note}</li>
     
     <button className='deleteButton' value={props.Personal.idencode} onClick={onDelete} >Delete</button>
   </div>

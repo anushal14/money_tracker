@@ -48,7 +48,7 @@ function App() {
       })
       .catch(error => console.log('error', error));
 
-    },[])
+    },[newTransaction,newContact])
 
   const[contactList,setContactlist]=useState([])
 
@@ -154,7 +154,14 @@ function App() {
             {contactList.map((con)=>(          
                 <li class="mode" key={con.idencode}><a href="#">
                     <i class="uil uil-estate"></i>
+                    <div className='contactdetails'>
                     <span class="link-name">{con.name}</span>
+                    <div className='Contact_inc_exp'>
+                    
+                        <span style={{color:"black"}}>Income:<span style={{color:"darkgreen"}}>&#8377;{con.transactions_detail.total_income?con.transactions_detail.total_income:0}</span></span>
+                        <span style={{color:"black",paddingLeft:"8px"}}>Expense:<span style={{color:"red"}}>&#8377;{con.transactions_detail.total_expense?con.transactions_detail.total_expense:0}</span></span>
+                     </div>
+                    </div>
                 </a>
                 <div class="mode-toggle">
                 <img src={(con.image!==null)?con.image:userImg} alt="" className="user-img"/>

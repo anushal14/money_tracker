@@ -54,10 +54,10 @@ function AddContacts(props){
          {name:'',
           phone:"",
           address: "",
-          image:""
+        
         }
         )
-
+        setImage("");
 
     }
 

@@ -70,7 +70,7 @@
     ul {
       list-style: none;
     }
-    li {
+    .list {
       padding: 0.8em 1em;
     }
     .deleteButton {
