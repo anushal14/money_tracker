@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './SignUp.css';
 toast.configure()
 function SignUp() {
@@ -121,6 +121,7 @@ function SignUp() {
         <div className="button" onClick={handleSubmit}>
           <input type="submit" value="SignUp"/>
         </div>
+        <p style={{textAlign:"center"}}>Already have an Account? <Link to='/'>Sign In</Link></p>
       </form>
     </div>
     
