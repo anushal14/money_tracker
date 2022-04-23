@@ -1,7 +1,10 @@
 import React,{useState} from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
+toast.configure()
 function SignUp() {
    const[values,setValues]=useState({
     password: "",
@@ -20,7 +23,7 @@ function SignUp() {
             ...values,[e.target.name]:e.target.value
         });
     }
-
+    const notify = () => toast.success("Great! Account created Successfully",{position:toast.POSITION.TOP_CENTER,autoClose:2000});
     const[data,setData]=useState({})
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -46,13 +49,14 @@ function SignUp() {
           }, 
         }).then((response) => {
           console.log(response);
-          alert("Great!,Your account has been created Successfully")
-          navigate(`/`);
+          notify();
+          setTimeout(function(){
+              navigate(`/`);
+              }, 1000);
           }
           )
       .catch((error) => {console.log('error', error)
       setData(error.response.data);
-        
         })
         setValues(
          {password:'',
