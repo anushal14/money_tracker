@@ -1,4 +1,6 @@
 import React,{useState} from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 function SignUp() {
    const[values,setValues]=useState({
@@ -12,6 +14,7 @@ function SignUp() {
     dob:"",
     });
 
+    let navigate = useNavigate();
     const handleChange=(e)=>{
         setValues({
             ...values,[e.target.name]:e.target.value
@@ -23,32 +26,34 @@ function SignUp() {
         e.preventDefault();
         // setData(values);
         // console.log(data);
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
-            "password": values.password,
-            "username": values.username,
-            "first_name": values.first_name,
-            "last_name": values.last_name,
-            "email": values.email,
-            "phone_number": values.phone_number,
-            "dob":values.dob
-          });
-
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-        };
-
-        fetch("https://money-track-project.herokuapp.com/accounts/signup/", requestOptions)
-        .then(response => response.json())
-        .then(result => {console.log(result);
-        setData(result);})
-        .catch(error =>console.log('error', error)
-        );
+        const payload = {
+          password: values.password,
+            username: values.username,
+            first_name: values.first_name,
+            last_name: values.last_name,
+            email: values.email,
+            phone_number: values.phone_number,
+            dob:values.dob
+        }
+        
+        axios({
+          method: 'post',
+          url: 'https://money-track-project.herokuapp.com/accounts/signup/',
+          data: payload,
+          headers: {
+           // 'Authorization': `bearer ${token}`,
+          'Content-Type': 'application/json'
+          }, 
+        }).then((response) => {
+          console.log(response);
+          alert("Great!,Your account has been created Successfully")
+          navigate(`/`);
+          }
+          )
+      .catch((error) => {console.log('error', error)
+      setData(error.response.data);
+        
+        })
         setValues(
          {password:'',
           confirm_password:"",
@@ -60,6 +65,7 @@ function SignUp() {
           dob:"",
         }
         )
+        setData("")
     }
 
   return (  

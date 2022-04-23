@@ -45,6 +45,8 @@ function App() {
       .then(response => response.json())
       .then(result => {console.log(result);
       setContactlist(result.results);
+      setNext(result.next);
+      setPrevious(result.previous);
       })
       .catch(error => console.log('error', error));
 
@@ -115,6 +117,31 @@ function App() {
     const [typeName,setTypeName]=useState("All Transactions")
     
 
+    const[next,setNext]=useState("");
+    const[previous,setPrevious]=useState("");
+    const onSwitchPage=(e)=>{
+
+        var myHeaders = new Headers();
+      myHeaders.append("bearer",localStorage.getItem('bearer'));
+      myHeaders.append("user-id", localStorage.getItem('user-id'));
+
+      var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+      };
+
+      fetch(e.target.value, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setContactlist(result.results);
+      setPrevious(result.previous);
+      setNext(result.next);
+      })
+      .catch(error => console.log('error', error));
+      }
+
 
 
   if(logout){
@@ -168,6 +195,10 @@ function App() {
                 </div></li>
                  ))}
             </ul>
+            <div className="switchbutton">
+        <button className="nextbtn" disabled={previous===null?true:false} value={previous} onClick={onSwitchPage}>&#8592;Previous</button>
+        <button className="nextbtn" disabled={next===null?true:false} value={next} onClick={onSwitchPage}>Next&#8594;</button>
+      </div>
             
             {/* <ul class="logout-mode">
                 <li><a href="#">
