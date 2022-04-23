@@ -137,12 +137,15 @@ form .user-details .input-box{
     width: 100%;
   }
   .content form .user-details{
+    padding-top: 15px;
+    box-shadow: 
+        inset 0px 11px 10px -10px #CCC,
+        inset 0px -11px 10px -10px #CCC;
+    background-color: white;
     max-height: 300px;
     overflow-y: scroll;
   }
-  .user-details::-webkit-scrollbar{
-    width: 5px;
-  }
+  
   }
   @media(max-width: 459px){
   .signupContainer .content .category{

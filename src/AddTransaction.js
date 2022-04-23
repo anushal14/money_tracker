@@ -70,7 +70,7 @@ fetch("https://money-track-project.herokuapp.com//transactions/transactions/", r
         <div >
         
         <div className="signupContainer">
-        <div className="title"><span>Add New Transaction </span>
+        <div className="title"><span>Add Transaction </span>
         <span className='right' onClick={Cancel}>cancel</span>
         </div>
         

@@ -42,8 +42,11 @@ body.dark{
     --box3-color: #3A3B3C;
     --title-icon-color: #CCC;
 }
-/* === Custom Scroll Bar CSS === */
 ::-webkit-scrollbar {
+    width: 0px;
+}
+/* === Custom Scroll Bar CSS === */
+/* ::-webkit-scrollbar {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
@@ -62,7 +65,7 @@ body.dark{
 body.dark::-webkit-scrollbar-thumb:hover,
 body.dark .activity-data::-webkit-scrollbar-thumb:hover{
     background: #3A3B3C;
-}
+} */
 
 nav{
     position: fixed;
