@@ -3,7 +3,6 @@ import userImg from './images/user.png'
 import { Navigate } from 'react-router-dom';
 import AddContacts from './AddContact';
 import './App.css';
-import {Row,Col,Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose } from 'react-icons/fa';
 import AddTransaction from './AddTransaction';
@@ -55,7 +54,7 @@ const[sidebar,setSidebar]=useState(false);
       .then(result => {console.log(result);
       setContactlist(result.results);
       setNext(result.next);
-      setPrevious(result.previous);
+    //   setPrevious(result.previous);
       })
       .catch(error => console.log('error', error));
 
@@ -141,9 +140,9 @@ const[sidebar,setSidebar]=useState(false);
     
 
     const[next,setNext]=useState("");
-    const[previous,setPrevious]=useState("");
+    const[loading,setLoading]=useState("")
     const onSwitchPage=(e)=>{
-
+        setLoading("Loading.....")
         var myHeaders = new Headers();
       myHeaders.append("bearer",localStorage.getItem('bearer'));
       myHeaders.append("user-id", localStorage.getItem('user-id'));
@@ -160,8 +159,10 @@ const[sidebar,setSidebar]=useState(false);
         console.log(result.results[0]);
         setContactlist([...contactList,...(result.results)]);
       setNext(result.next);
+      setLoading("");
       })
-      .catch(error => console.log('error', error));
+      .catch(error => {console.log('error', error)
+      setLoading("");});
       }
 
       const handleScroll=(e)=>{
@@ -184,37 +185,37 @@ const[sidebar,setSidebar]=useState(false);
     <div className='full'>
 
 <nav onScroll={handleScroll}>
-        <div class="logo-name">
-            <div class="logo-image">
+        <div className="logo-name">
+            <div className="logo-image">
                $
             </div>
 
-            <span class="logo_name">Money Tracker</span>
+            <span className="logo_name">Money Tracker</span>
             {mobile && <div onClick={()=>setSidebar(false)} style={{fontSize:"24px",paddingLeft:"65px",color:"red"}} ><FaWindowClose/></div>}
         </div>
 
-        <div class="menu-items">
-        <ul class="logout-mode">
+        <div className="menu-items">
+        <ul className="logout-mode">
                 
 
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="contacts">Contacts</span>
+                <li className="mode">
+                    <a href='#'>
+                        <i className="uil uil-moon"></i>
+                    <span className="contacts">Contacts</span>
                 </a>
                 
 
-                <div class="mode-toggle">
+                <div className="mode-toggle">
                 <div onClick={addContact} className='plus'><FaPlusCircle /></div>
                 </div>
             </li>
             </ul>
-            <ul class="nav-links">
+            <ul className="nav-links">
             {contactList.map((con)=>(          
-                <li class="mode" key={con.idencode}><a href="#">
-                    <i class="uil uil-estate"></i>
+                <li className="mode" key={con.idencode}><a href='#'>
+                    <i className="uil uil-estate"></i>
                     <div className='contactdetails'>
-                    <span class="link-name">{con.name}</span>
+                    <span className="link-name">{con.name}</span>
                     <div className='Contact_inc_exp'>
                     
                         <span style={{color:"black"}}>Income:<span style={{color:"darkgreen"}}>&#8377;{con.transactions_detail.total_income?con.transactions_detail.total_income:0}</span></span>
@@ -222,10 +223,11 @@ const[sidebar,setSidebar]=useState(false);
                      </div>
                     </div>
                 </a>
-                <div class="mode-toggle">
+                <div className="mode-toggle">
                 <img src={(con.image!==null)?con.image:userImg} alt="" className="user-img"/>
                 </div></li>
                  ))}
+                 <div>{loading}</div>
             </ul>
             {/* <div className="switchbutton">
         <button className="nextbtn" disabled={previous===null?true:false} value={previous} onClick={onSwitchPage}>&#8592;Previous</button>
@@ -252,17 +254,17 @@ const[sidebar,setSidebar]=useState(false);
         </div>
     </nav>
 {!sidebar &&
-    <section class="dashboard">
-        <div class="top">
+    <section className="dashboard">
+        <div className="top">
             {mobile &&
                 <div className='userDiv'>
                 <div className='userplus' onClick={()=>setSidebar(true)}><FaUser /></div>
                 </div>
             }
-            <i class="uil uil-bars sidebar-toggle"></i>
+            <i className="uil uil-bars sidebar-toggle"></i>
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
+            <div className="search-box">
+                <i className="uil uil-search"></i>
                 <input type="text" placeholder="Search here..."/>
                 
             </div>
@@ -272,36 +274,36 @@ const[sidebar,setSidebar]=useState(false);
         </div>
         </div>
 
-        <div class="dash-content">
-            <div class="overview">
-                <div onClick={addNewTransaction} class="title">
+        <div className="dash-content">
+            <div className="overview">
+                <div onClick={addNewTransaction} className="title">
                     <div className='plus'><FaPlusCircle /></div>
-                    <span class="text">New Transaction</span>
+                    <span className="text">New Transaction</span>
                 </div>
 
-                <div class="boxes">
-                    <button value="100" onClick={changeType} class="box box1">
+                <div className="boxes">
+                    <button value="100" onClick={changeType} className="box box1">
                         {/* <i class="uil uil-thumbs-up"></i> */}
-                        <span class="text">Total Income</span>
-                        <span class="number">&#8377;{total.Total_income}</span>
+                        <span className="text">Total Income</span>
+                        <span className="number">&#8377;{total.Total_income}</span>
                     </button>
                     {/* <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Comments</span>
                         <span class="number">20,120</span>
                     </div> */}
-                    <button value="200" onClick={changeType} class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Expense</span>
-                        <span class="number">&#8377;{total.total_expense}</span>
+                    <button value="200" onClick={changeType} className="box box3">
+                        <i className="uil uil-share"></i>
+                        <span className="text">Total Expense</span>
+                        <span className="number">&#8377;{total.total_expense}</span>
                     </button>
                 </div>
             </div>
 
-            <div class="activity">
-                <div class="typetitle">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">{typeName}</span>
+            <div className="activity">
+                <div className="typetitle">
+                    <i className="uil uil-clock-three"></i>
+                    <span className="text">{typeName}</span>
                 </div>
                 <ShowTranction type={typeReturn} changeType={changeType} condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
                

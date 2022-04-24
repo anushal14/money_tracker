@@ -95,7 +95,7 @@ function ShowTranction(props){
           <td data-label="Amount">&#8377; {con.amount}</td>
           <td data-label="Due Date">{con.last_date}</td>
           <td data-label="Note">{con.note}</td>
-          <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode)} class="btn-invoice">View Details</button></td>
+          <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode)} className="btn-invoice">View Details</button></td>
         </tr>
       ))}
       </tbody>
