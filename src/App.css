@@ -77,6 +77,7 @@ nav{
     background-color: var(--panel-color);
     border-right: 1px solid var(--border-color);
     transition: var(--tran-05);
+    overflow-y: scroll;
 }
 nav.close{
     width: 73px;
@@ -146,7 +147,7 @@ body.dark li a:hover:before{
     color: var(--black-light-color);
 }
 .menu-items li a .link-name{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     color: black;    
     transition: var(--tran-05);
@@ -171,7 +172,7 @@ body.dark .nav-links li a:hover .link-name{
     display: flex;
     align-items: center;
     white-space: nowrap;
-    padding: 0.4em 0em;
+    padding: 0.6em 0em;
 }
 .menu-items .mode-toggle{
     position: absolute;

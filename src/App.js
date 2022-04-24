@@ -154,15 +154,22 @@ const[sidebar,setSidebar]=useState(false);
       redirect: 'follow'
       };
 
-      fetch(e.target.value, requestOptions)
+      fetch(next, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
-        setContactlist(result.results);
-      setPrevious(result.previous);
+        console.log(result.results[0]);
+        setContactlist([...contactList,...(result.results)]);
       setNext(result.next);
       })
       .catch(error => console.log('error', error));
+      }
+
+      const handleScroll=(e)=>{
+          const bottom=Math.round(e.target.scrollHeight-e.target.scrollTop)===e.target.clientHeight;
+          if(bottom){
+              next &&
+              onSwitchPage();
+          }
       }
 
 
@@ -176,7 +183,7 @@ const[sidebar,setSidebar]=useState(false);
   return (  
     <div className='full'>
 
-<nav>
+<nav onScroll={handleScroll}>
         <div class="logo-name">
             <div class="logo-image">
                $
@@ -220,10 +227,10 @@ const[sidebar,setSidebar]=useState(false);
                 </div></li>
                  ))}
             </ul>
-            <div className="switchbutton">
+            {/* <div className="switchbutton">
         <button className="nextbtn" disabled={previous===null?true:false} value={previous} onClick={onSwitchPage}>&#8592;Previous</button>
         <button className="nextbtn" disabled={next===null?true:false} value={next} onClick={onSwitchPage}>Next&#8594;</button>
-      </div>
+      </div> */}
             
             {/* <ul class="logout-mode">
                 <li><a href="#">
