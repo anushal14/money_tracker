@@ -349,7 +349,7 @@ nav.close ~ .dashboard .top{
     border-radius: 50%;
 }
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
     nav{
         width: 73px;
     }
@@ -398,7 +398,7 @@ nav.close ~ .dashboard .top{
     .activity .activity-data{
         overflow-X: scroll;
     }
-}
+} */
 
 @media (max-width: 780px) {
     .dash-content .boxes .box{
@@ -411,7 +411,7 @@ nav.close ~ .dashboard .top{
         width: 100% ;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 1000px) {
     nav{
         width: 350px;
         

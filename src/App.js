@@ -23,7 +23,7 @@ const[sidebar,setSidebar]=useState(false);
 
   const[total,setTotal]=useState([]);
   useEffect(()=>{
-      if(window.innerWidth<401){
+      if(window.innerWidth<1000){
           setMobile(true);
       }
   },[])
@@ -60,7 +60,7 @@ const[sidebar,setSidebar]=useState(false);
       .catch(error => console.log('error', error));
 
       const handleSize=()=>{
-        if(window.innerWidth<401){
+        if(window.innerWidth<1000){
             setMobile(true);
         }
         else{
