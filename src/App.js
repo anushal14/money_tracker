@@ -5,7 +5,7 @@ import AddContacts from './AddContact';
 import './App.css';
 import {Row,Col,Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaSignOutAlt,FaPlusCircle } from 'react-icons/fa';
+import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose } from 'react-icons/fa';
 import AddTransaction from './AddTransaction';
 import ShowTranction from './ShowTransaction';
 import ShowByPerson from './ShowByPerson';
@@ -16,12 +16,21 @@ function App() {
   // const addNew=()=>setNewTransaction(true);
   const addContact=()=>setNewContact(!newContact);
   
-
+const[mobile,setMobile]=useState(false);
+const[sidebar,setSidebar]=useState(false);
   const[bearer,setBearer]=useState();
   const[userId,setUserId]=useState();
 
-  const[total,setTotal]=useState([])
+  const[total,setTotal]=useState([]);
+  useEffect(()=>{
+      if(window.innerWidth<401){
+          setMobile(true);
+      }
+  },[])
       useEffect(()=>{
+
+        
+
       setBearer(localStorage.getItem('bearer'));
       setUserId(localStorage.getItem('user-id'));
 
@@ -49,6 +58,20 @@ function App() {
       setPrevious(result.previous);
       })
       .catch(error => console.log('error', error));
+
+      const handleSize=()=>{
+        if(window.innerWidth<401){
+            setMobile(true);
+        }
+        else{
+            setMobile(false);
+        }
+    };
+    window.addEventListener("resize",handleSize);
+    return()=>{
+        window.removeEventListener("resize",handleSize);  
+    };
+
 
     },[newTransaction,newContact])
 
@@ -160,6 +183,7 @@ function App() {
             </div>
 
             <span class="logo_name">Money Tracker</span>
+            {mobile && <div onClick={()=>setSidebar(false)} style={{fontSize:"24px",paddingLeft:"65px",color:"red"}} ><FaWindowClose/></div>}
         </div>
 
         <div class="menu-items">
@@ -171,6 +195,7 @@ function App() {
                         <i class="uil uil-moon"></i>
                     <span class="contacts">Contacts</span>
                 </a>
+                
 
                 <div class="mode-toggle">
                 <div onClick={addContact} className='plus'><FaPlusCircle /></div>
@@ -219,9 +244,14 @@ function App() {
             </ul> */}
         </div>
     </nav>
-
+{!sidebar &&
     <section class="dashboard">
         <div class="top">
+            {mobile &&
+                <div className='userDiv'>
+                <div className='userplus' onClick={()=>setSidebar(true)}><FaUser /></div>
+                </div>
+            }
             <i class="uil uil-bars sidebar-toggle"></i>
 
             <div class="search-box">
@@ -231,7 +261,7 @@ function App() {
             </div>
             <div className="right-zone">
             <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img"/>
-            <diV className="notification" onClick={onLogout}><FaSignOutAlt/></diV>
+            <div className="notification" onClick={onLogout}><FaSignOutAlt/></div>
         </div>
         </div>
 
@@ -270,7 +300,7 @@ function App() {
                
             </div>
         </div>
-    </section>
+    </section>}
 
 
 

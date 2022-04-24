@@ -411,27 +411,32 @@ nav.close ~ .dashboard .top{
         width: 100% ;
     }
 }
-/* @media (max-width: 400px) {
+@media (max-width: 400px) {
     nav{
-        width: 0px;
+        width: 350px;
+        
     }
     nav.close{
         width: 73px;
     }
     nav .logo_name{
-        opacity: 0;
+        opacity: 1;
         pointer-events: none;
     }
     nav.close .logo_name{
-        opacity: 0;
+        opacity: 1;
         pointer-events: none;
     }
+    .contacts{
+        opacity: 1;
+        pointer-events: none;  
+    }
     nav li a .link-name{
-        opacity: 0;
+        opacity: 1;
         pointer-events: none;
     }
     nav.close li a .link-name{
-        opacity: 0;
+        opacity: 1;
         pointer-events: none;
     }
     nav ~ .dashboard{
@@ -450,7 +455,10 @@ nav.close ~ .dashboard .top{
         left: 0;
         width: 100%;
     }
-} */
+    .Contact_inc_exp{
+        opacity: 1;
+    }
+}
 
 
 .notification {
@@ -485,6 +493,31 @@ nav.close ~ .dashboard .top{
     font-size: larger;
     height: 32px;
     width: 32px;
+  }
+  .userplus{
+    width: 33px;
+    /* align-content: center; */
+    height: 30px;
+    text-align: center;
+   /* align-self: auto; */
+   color: black;
+    /* background-color: black; */
+    border-radius: 20px;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  0 10px 10px rgba(0,0,0,0.22);
+  margin: 0px 0 10px 10px;
+  }
+  .userDiv{
+      padding-left: 10px;
+  }
+  .userplus:hover{
+    text-align: center;
+    font-size: larger;
+    height: 32px;
+    width: 35px;
   }
   .contacts{
     font-size: 25px;
