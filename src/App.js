@@ -137,6 +137,8 @@ const[sidebar,setSidebar]=useState(false);
       setTypeName("Expense")
     }
     const [typeName,setTypeName]=useState("All Transactions")
+
+    const [contactId,setContactId]=useState("")
     
 
     const[next,setNext]=useState("");
@@ -191,7 +193,7 @@ const[sidebar,setSidebar]=useState(false);
             </div>
 
             <span className="logo_name">Money Tracker</span>
-            {mobile && <div onClick={()=>setSidebar(false)} style={{fontSize:"24px",paddingLeft:"65px",color:"red"}} ><FaWindowClose/></div>}
+            {mobile && <div onClick={()=>setSidebar(false)} style={{fontSize:"24px",paddingLeft:"75px",color:"red"}} ><FaWindowClose/></div>}
         </div>
 
         <div className="menu-items">
@@ -212,7 +214,7 @@ const[sidebar,setSidebar]=useState(false);
             </ul>
             <ul className="nav-links">
             {contactList.map((con)=>(          
-                <li className="mode" key={con.idencode}><a href='#'>
+                <li className="mode" key={con.idencode} onClick={()=>(setContactId(con.idencode),setSidebar(false))}><a href='#'>
                     <i className="uil uil-estate"></i>
                     <div className='contactdetails'>
                     <span className="link-name">{con.name}</span>
@@ -305,7 +307,7 @@ const[sidebar,setSidebar]=useState(false);
                     <i className="uil uil-clock-three"></i>
                     <span className="text">{typeName}</span>
                 </div>
-                <ShowTranction type={typeReturn} changeType={changeType} condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
+                <ShowTranction contactId={contactId} type={typeReturn} changeType={changeType} condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
                
             </div>
         </div>

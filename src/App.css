@@ -73,7 +73,7 @@ nav{
     left: 0;
     height: 100%;
     width: 300px;
-    padding: 10px 14px;
+    padding: 10px 0px;
     background-color: var(--panel-color);
     border-right: 1px solid var(--border-color);
     transition: var(--tran-05);
@@ -110,6 +110,7 @@ nav.close .logo_name{
 }
 nav .menu-items{
     margin-top: 32px;
+    margin-left: -28px;
     /* height: calc(100% - 90px); */
     display: flex;
     flex-direction: column;
@@ -124,6 +125,9 @@ nav .menu-items{
     /* height: 50px; */
     text-decoration: none;
     /* position: relative; */
+}
+.mode:hover{
+    background-color: rgb(225, 219, 219);
 }
 .nav-links li a:hover:before{
     content: "";
@@ -172,7 +176,7 @@ body.dark .nav-links li a:hover .link-name{
     display: flex;
     align-items: center;
     white-space: nowrap;
-    padding: 0.6em 0em;
+    padding: 0.6em 1em;
 }
 .menu-items .mode-toggle{
     position: absolute;

@@ -39,7 +39,7 @@ function ShowTranction(props){
         redirect: 'follow'
         };
   
-        fetch(`https://money-track-project.herokuapp.com//transactions/transactions/?type=${props.type}`, requestOptions)
+        fetch(`https://money-track-project.herokuapp.com//transactions/transactions/?type=${props.type}&contact=${props.contactId}&date=&upcoming=`, requestOptions)
         .then(response => response.json())
         .then(result => {
           console.log(result);
