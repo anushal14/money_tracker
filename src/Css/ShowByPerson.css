@@ -1,0 +1,89 @@
+:root {
+    --col-primary: #296eb3;
+    --col-secondary: #003b81;
+    --col-background: #e8e8e8;
+    --col-light: #e8e8e8;
+    --col-dark: #022f64;
+  
+    --col-free: #7dbaff;
+    --col-bronze: #b85a24;
+    --col-silver: #8a8a8a;
+    --col-gold: #e2a922;
+  }
+  
+  
+  .price_table {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    align-items: start;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    max-width: 80em;
+    
+  }
+  
+  .package {
+    border-radius: 4px;
+    background: wheat;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    position: relative;
+  }
+    .h2{
+      margin: 0;
+      padding: 1rem;
+      background: var(--col-primary);
+      /* font-size: 1.2em; */
+      text-align: center;
+      font-weight: 800;
+      color: rgb(255, 255, 255);
+      position: relative;
+      
+      
+    }
+    .price {
+      padding: 0.2rem 1rem;
+      background: linear-gradient(
+        45deg,
+        var(--col-secondary) 0%,
+        var(--col-dark) 100%
+      );
+      color:rgb(5, 190, 5);
+      text-align: center;
+      text-shadow: 0 4px 0 var(--col-dark);
+    }
+    .big {
+      display: inline;
+      font-size: 4em;
+      font-weight: 700;
+    }
+    .boom{
+      display: inline;
+      font-size: 12px;
+      font-weight: bold;
+      color: rgba(255, 0, 0, 0.726);
+      cursor: pointer;
+      padding-left: 80%;
+      
+    }
+    ul {
+      list-style: none;
+    }
+    .list {
+      padding: 0.8em 1em;
+    }
+    .deleteButton {
+      cursor: pointer;
+      padding: 1em 2em;
+      font-size: 1rem;
+      display: block;
+      color: white;
+      margin: 1rem auto;
+      border: none;
+      border-radius: 5px;
+      background:rgba(255, 0, 0, 0.767)
+     
+    }
+    
+  
