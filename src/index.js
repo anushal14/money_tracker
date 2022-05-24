@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Main from './main';
-import Test from './test/Test';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

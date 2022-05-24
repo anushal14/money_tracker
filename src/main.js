@@ -1,9 +1,8 @@
 import React from 'react';
-import './main.css';
 import { BrowserRouter,Routes,Route,} from 'react-router-dom';
 import App from './App';
-import SignUp from './signUp';
-import SignIn from './signIn';
+import SignUp from './Pages/signUp';
+import SignIn from './Pages/signIn';
 function Main(){
     return(
         <div>

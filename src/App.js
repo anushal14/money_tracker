@@ -1,13 +1,13 @@
 import React, { useState,useEffect} from 'react'
 import userImg from './images/user.png'
 import { Navigate } from 'react-router-dom';
-import AddContacts from './AddContact';
+import AddContacts from './Pages/AddContact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose } from 'react-icons/fa';
-import AddTransaction from './AddTransaction';
-import ShowTranction from './ShowTransaction';
-import ShowByPerson from './ShowByPerson';
+import AddTransaction from './Pages/AddTransaction';
+import ShowTranction from './Pages/ShowTransaction';
+import ShowByPerson from './Pages/ShowByPerson';
 function App() {
   const[newContact,setNewContact]=useState(false);
   const[newTransaction,setNewTransaction]=useState(false);
