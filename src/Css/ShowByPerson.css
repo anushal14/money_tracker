@@ -48,7 +48,7 @@
 .deleteButton {
   cursor: pointer;
   margin-left: 10px;
-  padding: 0.5em 2em;
+  padding: 0.5em 1.5em;
   color: white;
   border: none;
   border-radius: 5px;
@@ -57,7 +57,7 @@
 }
 .newButton {
   cursor: pointer;
-  padding: 0.5em 2em;
+  padding: 0.5em 1.5em;
   color: white;
   border: none;
   border-radius: 5px;
