@@ -22,6 +22,7 @@ function ShowTranction(props){
       
       props.onShowPersonal(result)
       props.onShowPersonal2(result.contact_details)
+      // console.log("hai",result.contact_details)
       })
       .catch(error => console.log('error', error));
     }
@@ -92,7 +93,7 @@ function ShowTranction(props){
         {income.map((con)=>(
         <tr key={con.idencode}>
       <td data-label="Name">{con.contact_details.name}</td>
-          <td data-label="Amount">&#8377; {con.amount}</td>
+          <td data-label="Amount" style={{color:con.type===200?"red":"green"}}>&#8377; {con.amount}</td>
           <td data-label="Due Date">{con.last_date}</td>
           <td data-label="Note">{con.note}</td>
           <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode)} className="btn-invoice">View Details</button></td>

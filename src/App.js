@@ -133,8 +133,10 @@ const[sidebar,setSidebar]=useState(false);
       setTypeReturn(e.target.value);
       if(e.target.value==="100")
       setTypeName("Income");
-      else
+      else if(e.target.value==="200")
       setTypeName("Expense")
+      else
+      setTypeName("All Transactions")
     }
     const [typeName,setTypeName]=useState("All Transactions")
 
@@ -282,7 +284,7 @@ const[sidebar,setSidebar]=useState(false);
                     <div className='plus'><FaPlusCircle /></div>
                     <span className="text">New Transaction</span>
                 </div>
-
+                <button className='AllTran_button' value="" onClick={changeType}>All Transaction</button>
                 <div className="boxes">
                     <button value="100" onClick={changeType} className="box box1">
                         {/* <i class="uil uil-thumbs-up"></i> */}

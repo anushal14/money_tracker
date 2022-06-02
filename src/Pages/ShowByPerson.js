@@ -1,5 +1,6 @@
 import React from "react";
 import '../Css/ShowByPerson.css';
+import userImg from '../images/user.png'
 function ShowByPerson(props){
 
 
@@ -23,27 +24,84 @@ function ShowByPerson(props){
       }
 
 return(
-    <div>
-       
-    <div className='popup'>
-    
-    <div className="price_table">
+  <div className='per_popup'>
+<div className="per_Container">
+<div className="title">
+<img src={(props.Personal2.image!==null)?props.Personal2.image:userImg} alt="" className="user-img"/>
+<span style={{marginLeft:"10px"}}>{props.Personal2.name}</span>
+<span className='right'onClick={()=>props.setShowPersonDetail(false)}>cancel</span>
+</div>
+<div className="Child_btn">
+<button className='newButton'>New Transaction</button>
+<button className='deleteButton' value={props.Personal.idencode} onClick={onDelete}>Delete</button>
+<span className="forTotal">Total Amount: <span style={{color:props.Personal.type===200?"red":"green"}}>&#8377; {props.Personal.amount}</span></span>
+</div>
+
+<div className="content">
+<div className="container" >
+  <table>
+     <thead>
+        <tr>
+          <th><label>Amount</label></th>
+          <th><label>Date</label></th>
+          <th><label>Note</label></th>
+          <th><label>Action</label></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td data-label="Amount">&#8377; 333</td>
+          <td data-label="Due Date">fffff</td>
+          <td data-label="Note">tyyyyy</td>
+          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
+        </tr>
+        <tr >
+          <td data-label="Amount">&#8377; 333</td>
+          <td data-label="Due Date">fffff</td>
+          <td data-label="Note">tyyyyy</td>
+          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
+        </tr>
+        <tr >
+          <td data-label="Amount">&#8377; 333</td>
+          <td data-label="Due Date">fffff</td>
+          <td data-label="Note">tyyyyy</td>
+          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
+        </tr>
+        <tr >
+          <td data-label="Amount">&#8377; 333</td>
+          <td data-label="Due Date">fffff</td>
+          <td data-label="Note">tyyyyy</td>
+          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
+        </tr>
+        <tr >
+          <td data-label="Amount">&#8377; 333</td>
+          <td data-label="Due Date">fffff</td>
+          <td data-label="Note">tyyyyy</td>
+          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
+        </tr>
+        <tr >
+          <td data-label="Amount">&#8377; 333</td>
+          <td data-label="Due Date">fffff</td>
+          <td data-label="Note">tyyyyy</td>
+          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
+        </tr>
+        <tr >
+          <td data-label="Amount">&#8377; 333</td>
+          <td data-label="Due Date">fffff</td>
+          <td data-label="Note">tyyyyy</td>
+          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
+        </tr>
+     
+      </tbody>
+      
+    </table>
+
   
 
+    </div>
+</div>
 
-  <div className="package package_free"  >
-  <div className="boom" onClick={()=>props.setShowPersonDetail(false)}>close</div>
-    <h2 className='h2'>{props.Personal2.name}</h2>
-    <div className="price">    <div className="big"> &#8377; {props.Personal.amount}</div></div>
-    
-      <li className="list" style={{fontSize:"18px",fontWeight:"bold"}}>Last Date : {props.Personal.last_date}</li>
-      <li className="list" style={{fontSize:"18px",fontWeight:"bold"}}>Note : {props.Personal.note}</li>
-    
-    <button className='deleteButton' value={props.Personal.idencode} onClick={onDelete} >Delete</button>
-  </div>
-  
-  </div>
-</div> 
+</div>
 </div>
 )
 }
