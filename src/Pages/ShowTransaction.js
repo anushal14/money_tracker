@@ -4,27 +4,13 @@ function ShowTranction(props){
     const[income,setIncome]=useState([]);
     
 
-    const ShowPerson=(id)=>{
+    const ShowPerson=(idencode,contact_details,amount,type)=>{
+      localStorage.setItem('parent',idencode);
       props.setShowPersonDetail(true);
-      var myHeaders = new Headers();
-      myHeaders.append("bearer", localStorage.getItem('bearer'));
-      myHeaders.append("user-id", localStorage.getItem('user-id'));
-
-      var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-      fetch(`https://money-track-project.herokuapp.com//transactions/transactions/${id}`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
+      props.onShowPersonal2(contact_details)
+      var coData={amount,type,idencode}
+      props.onShowPersonal(coData);
       
-      props.onShowPersonal(result)
-      props.onShowPersonal2(result.contact_details)
-      // console.log("hai",result.contact_details)
-      })
-      .catch(error => console.log('error', error));
     }
 
     const[next,setNext]=useState("");
@@ -43,7 +29,7 @@ function ShowTranction(props){
         fetch(`https://money-track-project.herokuapp.com//transactions/transactions/?type=${props.type}&contact=${props.contactId}&date=&upcoming=`, requestOptions)
         .then(response => response.json())
         .then(result => {
-          console.log(result);
+          console.log('haaai',result);
         setIncome(result.results);
         setNext(result.next);
         setPrevious(result.previous);
@@ -96,7 +82,7 @@ function ShowTranction(props){
           <td data-label="Amount" style={{color:con.type===200?"red":"green"}}>&#8377; {con.amount}</td>
           <td data-label="Due Date">{con.last_date}</td>
           <td data-label="Note">{con.note}</td>
-          <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode)} className="btn-invoice">View Details</button></td>
+          <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode,con.contact_details,con.amount,con.type)} className="btn-invoice">View Details</button></td>
         </tr>
       ))}
       </tbody>

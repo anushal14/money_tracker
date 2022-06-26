@@ -72,7 +72,7 @@ const[sidebar,setSidebar]=useState(false);
     };
 
 
-    },[newTransaction,newContact])
+    },[newTransaction,newContact,ShowPersonDetail])
 
   const[contactList,setContactlist]=useState([])
 
@@ -222,8 +222,8 @@ const[sidebar,setSidebar]=useState(false);
                     <span className="link-name">{con.name}</span>
                     <div className='Contact_inc_exp'>
                     
-                        <span style={{color:"black"}}>Income:<span style={{color:"darkgreen"}}>&#8377;{con.transactions_detail.total_income?con.transactions_detail.total_income:0}</span></span>
-                        <span style={{color:"black",paddingLeft:"8px"}}>Expense:<span style={{color:"red"}}>&#8377;{con.transactions_detail.total_expense?con.transactions_detail.total_expense:0}</span></span>
+                        <span style={{color:"black"}}>Balance: <span style={{color:`${con.transactions_detail.type===100?"darkgreen":"red"}`}}>&#8377;{con.transactions_detail.amount?con.transactions_detail.amount:0}</span></span>
+                
                      </div>
                     </div>
                 </a>

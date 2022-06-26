@@ -1,13 +1,15 @@
 import React,{useState,useEffect} from 'react';
+import axios from 'axios';
 import '../Css/AddTransaction.css'
 function AddChildTransaction(props){
 
   const[transaction,setTransaction]=useState({
     contact: props.personal2,
+    parentTransaction:props.personal.idencode,
     amount: "",
     note: "",
     lastDate:"",
-    type:props.personal
+    type:props.personal.type
     });
     const handleChange=(e)=>{
       setTransaction({
@@ -23,40 +25,33 @@ const[bearer,setBearer]=useState();
     const handleSubmit=(e)=>{
       e.preventDefault();
       console.log(transaction)
+      const payload = {
+        contact: transaction.contact.idencode,
+        parent_transaction: transaction.parentTransaction,
+        amount: transaction.amount,
+        note: transaction.note,
+        last_date:transaction.lastDate,
+        type:transaction.type
+      }
+      
+      axios({
+        method: 'post',
+        url: 'https://money-track-project.herokuapp.com//transactions/transactions/',
+        data: payload,
+        headers: {
+        //  'Authorization': `bearer ${token}`,
+         'bearer': bearer,
+         'user-id': userId,
+        'Content-Type': 'application/json'
+        }, 
+      }).then((response) => {
+        console.log("hai",response); 
+        }
+        )
+    .catch((error) => {console.log('error', error.response.data)
+    
+      })
 
-//       var myHeaders = new Headers();
-//       myHeaders.append("bearer", bearer);
-//       myHeaders.append("user-id", userId);
-//       myHeaders.append("Content-Type", "application/json");
-
-//       var raw = JSON.stringify({
-//       "contact": transaction.contact,
-//       "amount": transaction.amount,
-//       "note": transaction.note,
-//       "last_date": transaction.lastDate,
-//       "type": transaction.type
-//     });
-
-//     var requestOptions = {
-//     method: 'POST',
-//     headers: myHeaders,
-//     body: raw,
-//     redirect: 'follow'
-//   };
-
-// fetch("https://money-track-project.herokuapp.com//transactions/transactions/", requestOptions)
-//   .then(response => response.json())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-//   setTransaction(
-//     {
-//       contact: "",
-//       amount: "",
-//       note: "",
-//       lastDate:"",
-//       type:"100"
-//    }
-//    )
     }
 
     const Cancel=(e)=>{
@@ -83,8 +78,8 @@ const[bearer,setBearer]=useState();
               </div> */}
               <div className="input-box">
               <span className="details">Contact</span>
-              <select className='dropdown' name="contact" value={transaction.contact} onChange={handleChange}  id="cars">
-                <option>{props.personal2}</option>
+              <select className='dropdown' name="contact" value={transaction.contact.name} onChange={handleChange}  id="cars">
+                <option>{props.personal2.name}</option>
               </select>
               </div>
             
@@ -104,7 +99,7 @@ const[bearer,setBearer]=useState();
                 <span className="details">Type</span>
                 <select className='dropdown' name="type" value={transaction.type} onChange={handleChange} >
                 {/* <option>Select a Type</option> */}
-                <option >{props.personal===100?"Income":"Expense"}</option>
+                <option >{props.personal.type===100?"Income":"Expense"}</option>
                 </select>
                 
               </div>

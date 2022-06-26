@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import '../Css/AddTransaction.css'
+import axios from 'axios';
 function AddTransaction(props){
-
+  const[contact,setContact]=useState([]);
   const[transaction,setTransaction]=useState({
     contact: "",
     amount: "",
@@ -14,19 +15,33 @@ function AddTransaction(props){
           ...transaction,[e.target.name]:e.target.value
   });
 }
-const[bearer,setBearer]=useState();
-    const[userId,setUserId]=useState();
     useEffect(()=>{
-      setBearer(localStorage.getItem('bearer'));
-      setUserId(localStorage.getItem('user-id'))
-    })
+      axios({
+        method: 'get',
+        url: `https://money-track-project.herokuapp.com//accounts/contact/list/?limit=1000&offset=''`,
+        headers: {
+        //  'Authorization': `bearer ${token}`,
+         'bearer': localStorage.getItem('bearer'),
+         'user-id': localStorage.getItem('user-id'),
+        'Content-Type': 'application/json'
+        }, 
+      }).then((response) => {
+        console.log('contact',response)
+        setContact(response.data.results); 
+        }
+        )
+    .catch((error) => {console.log('error', error.response.data)
+    
+      })
+    },[])
+
     const handleSubmit=(e)=>{
       e.preventDefault();
       // console.log(transaction)
 
       var myHeaders = new Headers();
-      myHeaders.append("bearer", bearer);
-      myHeaders.append("user-id", userId);
+      myHeaders.append("bearer", localStorage.getItem('bearer'));
+      myHeaders.append("user-id", localStorage.getItem('user-id'));
       myHeaders.append("Content-Type", "application/json");
 
       var raw = JSON.stringify({
@@ -85,7 +100,7 @@ fetch("https://money-track-project.herokuapp.com//transactions/transactions/", r
               <span className="details">Contact</span>
               <select className='dropdown' name="contact" value={transaction.contact} onChange={handleChange}  id="cars">
                 <option>Select a contact</option>
-              {props.contactList.map((con)=>(
+              {contact.map((con)=>(
               <option key={con.idencode}  value={con.idencode} >{con.name}</option>
                ))}
               </select>

@@ -1,8 +1,28 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import '../Css/ShowByPerson.css';
+import axios from 'axios';
 import userImg from '../images/user.png'
 import AddChildTransaction from "./AddChildTransaction";
 function ShowByPerson(props){
+  const[contact,setContact]=useState([]);
+useEffect(()=>{
+  axios({
+    method: 'get',
+    url: `https://money-track-project.herokuapp.com//transactions/child_transactions/${localStorage.getItem('parent')}`,
+    headers: {
+    //  'Authorization': `bearer ${token}`,
+     'bearer': localStorage.getItem('bearer'),
+     'user-id': localStorage.getItem('user-id'),
+    'Content-Type': 'application/json'
+    }, 
+  }).then((response) => {
+    setContact(response.data.results); 
+    }
+    )
+.catch((error) => {console.log('error', error.response.data)
+
+  })
+},[])
 
   const[newChildTransaction,setNewChildTransaction]=useState(false);
     const onDelete=(e)=>{
@@ -37,7 +57,6 @@ return(
 <button className='deleteButton' value={props.Personal.idencode} onClick={onDelete}>Delete</button>
 <span className="forTotal">Total Amount: <span style={{color:props.Personal.type===200?"red":"green"}}>&#8377; {props.Personal.amount}</span></span>
 </div>
-
 <div className="content">
 <div className="container" >
   <table>
@@ -50,49 +69,16 @@ return(
         </tr>
       </thead>
       <tbody>
-        <tr >
-          <td data-label="Amount">&#8377; 333</td>
-          <td data-label="Due Date">fffff</td>
-          <td data-label="Note">tyyyyy</td>
+      {contact.map((con)=>(
+        <tr key={con.idencode}>
+          <td data-label="Amount">&#8377; {con.amount}</td>
+          <td data-label="Due Date">{con.date}</td>
+          <td data-label="Note">{con.note}</td>
           <td data-label="Action"><button  className="deleteButton">Delete</button></td>
         </tr>
-        <tr >
-          <td data-label="Amount">&#8377; 333</td>
-          <td data-label="Due Date">fffff</td>
-          <td data-label="Note">tyyyyy</td>
-          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
-        </tr>
-        <tr >
-          <td data-label="Amount">&#8377; 333</td>
-          <td data-label="Due Date">fffff</td>
-          <td data-label="Note">tyyyyy</td>
-          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
-        </tr>
-        <tr >
-          <td data-label="Amount">&#8377; 333</td>
-          <td data-label="Due Date">fffff</td>
-          <td data-label="Note">tyyyyy</td>
-          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
-        </tr>
-        <tr >
-          <td data-label="Amount">&#8377; 333</td>
-          <td data-label="Due Date">fffff</td>
-          <td data-label="Note">tyyyyy</td>
-          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
-        </tr>
-        <tr >
-          <td data-label="Amount">&#8377; 333</td>
-          <td data-label="Due Date">fffff</td>
-          <td data-label="Note">tyyyyy</td>
-          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
-        </tr>
-        <tr >
-          <td data-label="Amount">&#8377; 333</td>
-          <td data-label="Due Date">fffff</td>
-          <td data-label="Note">tyyyyy</td>
-          <td data-label="Action"><button  className="deleteButton">Delete</button></td>
-        </tr>
-     
+      ))}
+        
+       
       </tbody>
       
     </table>
@@ -103,7 +89,7 @@ return(
 </div>
 
 </div>
-{newChildTransaction && <AddChildTransaction setNewChildTransaction={setNewChildTransaction} personal2={props.Personal2.name} personal={props.Personal.type}/>}
+{newChildTransaction && <AddChildTransaction setNewChildTransaction={setNewChildTransaction} personal2={props.Personal2} personal={props.Personal}/>}
 </div>
 )
 }
