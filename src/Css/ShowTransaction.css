@@ -37,6 +37,10 @@ table tr {
 	border: 1px solid #e1e5e9;
 	padding: .35em;
 	border-radius: 3px;
+	
+}
+table td{
+	cursor: pointer;
 }
 table thead tr:first-child {
     border: 1px solid #0f82e695;
@@ -49,9 +53,14 @@ table td {
 	font-size: 14px;
 	/* font-family: cursive; */
 }
-
+table tr:hover{
+	box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
 table td:nth-child(3) {
 	font-size: 18px;
+}
+table td:nth-child(4) {
+	font-weight: bold;
 }
 table td:nth-child(1) {
 	font-size: 18px;

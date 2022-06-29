@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import AddContacts from './Pages/AddContact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose } from 'react-icons/fa';
+import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose,FaPlus } from 'react-icons/fa';
 import AddTransaction from './Pages/AddTransaction';
 import ShowTranction from './Pages/ShowTransaction';
 import ShowByPerson from './Pages/ShowByPerson';
@@ -271,13 +271,13 @@ const[sidebar,setSidebar]=useState(false);
             <div className="notification" onClick={onLogout}><FaSignOutAlt/></div>
         </div>
         </div>
-
+           
         <div className="dash-content">
             <div className="overview">
-                <div onClick={addNewTransaction} className="title">
+                {/* <div onClick={addNewTransaction} className="title">
                     <div className='plus'><FaPlusCircle /></div>
                     <span className="text">New Transaction</span>
-                </div>
+                </div> */}
                 
                 <div className="boxes">
                     <div className="box box1">
@@ -300,16 +300,22 @@ const[sidebar,setSidebar]=useState(false);
                 <div className="typetitle">
                     {/* <i className="uil uil-clock-three"></i> */}
                     
-                    <select onChange={changeType}>
+                    <select onChange={changeType} className='selectBox'>
                         <option value="">All Transaction</option>
                         <option value="100">Income</option>
                         <option value="200">Expense</option>
+                    </select>
+                    <select className='selectBox'>
+                        <option value="100">Initiated</option>
+                        <option value="200">Ongoing</option>
+                        <option value="300">Completed</option>
                     </select>
                 </div>
                 <ShowTranction contactId={contactId} type={typeReturn} changeType={changeType} condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
                
             </div>
         </div>
+        <div onClick={addNewTransaction} className='circle'><FaPlus/></div>
     </section>}
 
 

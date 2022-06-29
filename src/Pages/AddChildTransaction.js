@@ -23,8 +23,16 @@ const[bearer,setBearer]=useState();
       setBearer(localStorage.getItem('bearer'));
       setUserId(localStorage.getItem('user-id'))
     })
+    const[error,setError]=useState()
     const handleSubmit=(e)=>{
       e.preventDefault();
+      if(transaction.amount>props.balance){
+        setError(`Amount should be in range of 0-${props.balance}`)
+      }
+      else if(transaction.amount==='0'){
+        setError(`Amount should be greater than 0`)
+      }
+      else{
       props.setNewChildTransaction(false)
       console.log(transaction)
       const payload = {
@@ -53,6 +61,7 @@ const[bearer,setBearer]=useState();
     .catch((error) => {console.log('error', error.response.data)
     
       })
+    }
 
     }
 
@@ -70,7 +79,6 @@ const[bearer,setBearer]=useState();
         <div className="title"><span>Add Transaction </span>
         <span className='right' onClick={Cancel}>cancel</span>
         </div>
-        
         <div className="content">
           <form>
             <div className="user-details">
@@ -88,6 +96,7 @@ const[bearer,setBearer]=useState();
               <div className="input-box">
                 <span className="details">Amount</span>
                 <input type="number" placeholder="Enter Amount" name="amount" value={transaction.amount} onChange={handleChange}  required/>
+                <div style={{color:"red"}}>{error}</div>
               </div>
               <div className="input-box">
                 <span className="details">Note</span>
