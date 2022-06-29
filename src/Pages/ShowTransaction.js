@@ -40,7 +40,6 @@ function ShowTranction(props){
 
 
         const onSwitchPage=(e)=>{
-
           var myHeaders = new Headers();
         myHeaders.append("bearer",localStorage.getItem('bearer'));
         myHeaders.append("user-id", localStorage.getItem('user-id'));
@@ -62,10 +61,19 @@ function ShowTranction(props){
         .catch(error => console.log('error', error));
         }
 
+        const findStatus=(status)=>{
+          if(status===300)
+            return "green"
+          else if(status===200)
+            return "yellow"
+          else
+            return "red"
+        }
     
 
     return(
         <div className="container" >
+          
   <table>
      <thead>
         <tr>
@@ -79,7 +87,7 @@ function ShowTranction(props){
       <tbody>
         {income.map((con)=>(
         <tr key={con.idencode} onClick={()=>ShowPerson(con.idencode,con.contact_details,con.amount,con.status,con.type,con.child_transactions)}>
-      <td data-label="Name">{con.contact_details.name}</td>
+      <td data-label="Name" className="StatusLine"><div style={{backgroundColor:findStatus(con.status)}} className="statusDot"></div><div>{con.contact_details.name}</div></td>
           <td data-label="Amount" style={{color:con.type===200?"red":"green"}}>&#8377; {con.amount}</td>
           <td data-label="Due Date">{con.last_date}</td>
           {/* <td data-label="Note">{con.note}</td> */}

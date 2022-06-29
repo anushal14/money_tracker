@@ -98,8 +98,29 @@ tbody tr:nth-child(even) {
 tbody tr:nth-child(odd) {
 	background-color: #fff;
 }
+.statusDot{
+	content: '';
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	margin-right: 10px;
+	border: 1px solid rgb(0, 0, 0)
+}
+.StatusLine{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 @media screen and (max-width: 600px) {
+	.statusDot{
+		margin-left: 60%;
+	}
+	.StatusLine{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 	table {
 		border: 0;
 	}

@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import AddContacts from './Pages/AddContact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose,FaPlus } from 'react-icons/fa';
+import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose,FaPlus,FaAngleDoubleUp,FaAngleUp,FaAngleDown } from 'react-icons/fa';
 import AddTransaction from './Pages/AddTransaction';
 import ShowTranction from './Pages/ShowTransaction';
 import ShowByPerson from './Pages/ShowByPerson';
@@ -171,6 +171,7 @@ const[sidebar,setSidebar]=useState(false);
           }
       }
 
+        const[classna,setClassna]=useState("void")
 
 
   if(logout){
@@ -271,15 +272,14 @@ const[sidebar,setSidebar]=useState(false);
             <div className="notification" onClick={onLogout}><FaSignOutAlt/></div>
         </div>
         </div>
-           
         <div className="dash-content">
             <div className="overview">
                 {/* <div onClick={addNewTransaction} className="title">
                     <div className='plus'><FaPlusCircle /></div>
                     <span className="text">New Transaction</span>
                 </div> */}
-                
-                <div className="boxes">
+                {mobile && (classna==="void") && <div className='downAngle' onClick={()=>setClassna("boxes")}><FaAngleDown/></div>} 
+                <div className={mobile?classna:"boxes"}>
                     <div className="box box1">
                         {/* <span className="text">Total Income</span> */}
                         <span className="number">&#8377;{total.Total_income}</span>
@@ -294,6 +294,7 @@ const[sidebar,setSidebar]=useState(false);
                         <span className="number">&#8377;{total.total_expense}</span>
                     </div>
                 </div>
+                {mobile && (classna==="boxes") && <div className='downAngle' onClick={()=>setClassna("void")}><FaAngleUp/></div>}
             </div>
 
             <div className="activity">
