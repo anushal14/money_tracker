@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import { basic_url } from '../common/constant';
 import '../Css/AddContact.css'
 function AddContacts(props){
   const[contact,setContact]=useState({
@@ -45,7 +46,7 @@ function AddContacts(props){
         redirect: 'follow'
       };
       
-      fetch("https://money-track-project.herokuapp.com/accounts/contact/", requestOptions)
+      fetch(`${basic_url}accounts/contact/`, requestOptions)
         .then(response => response.json())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));

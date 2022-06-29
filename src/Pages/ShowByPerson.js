@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import '../Css/ShowByPerson.css';
+import { basic_url } from '../common/constant';
 import axios from 'axios';
 import userImg from '../images/user.png'
 import AddChildTransaction from "./AddChildTransaction";
@@ -8,7 +9,7 @@ function ShowByPerson(props){
 useEffect(()=>{
   axios({
     method: 'get',
-    url: `https://money-track-project.herokuapp.com//transactions/child_transactions/${localStorage.getItem('parent')}`,
+    url: `${basic_url}/transactions/child_transactions/${localStorage.getItem('parent')}`,
     headers: {
     //  'Authorization': `bearer ${token}`,
      'bearer': localStorage.getItem('bearer'),
@@ -17,6 +18,7 @@ useEffect(()=>{
     }, 
   }).then((response) => {
     setContact(response.data.results); 
+    console.log("hai2",response.data.results)
     }
     )
 .catch((error) => {console.log('error', error.response.data)
@@ -38,7 +40,7 @@ useEffect(()=>{
         redirect: 'follow'
         };
   
-        fetch(`https://money-track-project.herokuapp.com//transactions/transactions/${e.target.value}`, requestOptions)
+        fetch(`${basic_url}/transactions/transactions/${e.target.value}`, requestOptions)
         .then(response => response.json())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -56,6 +58,8 @@ return(
 <button className='newButton' onClick={()=>setNewChildTransaction(true)}>New Transaction</button>
 <button className='deleteButton' value={props.Personal.idencode} onClick={onDelete}>Delete</button>
 <span className="forTotal">Total Amount: <span style={{color:props.Personal.type===200?"red":"green"}}>&#8377; {props.Personal.amount}</span></span>
+<br/>
+<span className="forTotal">Balance Amount: <span >&#8377; {props.Personal.amount-props.Personal.child_transaction.amount}</span></span>
 </div>
 <div className="content">
 <div className="container" >

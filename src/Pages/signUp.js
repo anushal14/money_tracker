@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link,useNavigate } from 'react-router-dom';
 import '../Css/SignUp.css';
+import { basic_url } from '../common/constant';
 toast.configure()
 function SignUp() {
    const[values,setValues]=useState({
@@ -41,7 +42,7 @@ function SignUp() {
         
         axios({
           method: 'post',
-          url: 'https://money-track-project.herokuapp.com/accounts/signup/',
+          url: `${basic_url}accounts/signup/`,
           data: payload,
           headers: {
            // 'Authorization': `bearer ${token}`,

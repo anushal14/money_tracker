@@ -1,5 +1,6 @@
 import React, { useState,useEffect} from 'react'
-import userImg from './images/user.png'
+import userImg from './images/user.png';
+import { basic_url } from './common/constant';
 import { Navigate } from 'react-router-dom';
 import AddContacts from './Pages/AddContact';
 import './App.css';
@@ -43,13 +44,13 @@ const[sidebar,setSidebar]=useState(false);
       redirect: 'follow'
     };
 
-      fetch("https://money-track-project.herokuapp.com//accounts/dashboard/", requestOptions)
+      fetch(`${basic_url}/accounts/dashboard/`, requestOptions)
       .then(response => response.json())
       .then(result => {console.log(result);
       setTotal(result);
     })
       .catch(error => console.log('error', error));
-      fetch("https://money-track-project.herokuapp.com/accounts/contact/", requestOptions)
+      fetch(`${basic_url}accounts/contact/`, requestOptions)
       .then(response => response.json())
       .then(result => {console.log(result);
       setContactlist(result.results);
@@ -88,7 +89,7 @@ const[sidebar,setSidebar]=useState(false);
       redirect: 'follow'
       };
 
-      fetch("https://money-track-project.herokuapp.com/accounts/contact/", requestOptions)
+      fetch(`${basic_url}accounts/contact/`, requestOptions)
       .then(response => response.json())
       .then(result => {console.log(result);
       setContactlist(result.results);
@@ -109,7 +110,7 @@ const[sidebar,setSidebar]=useState(false);
       redirect: 'follow'
       };
 
-      fetch("https://money-track-project.herokuapp.com//accounts/logout/", requestOptions)
+      fetch(`${basic_url}/accounts/logout/`, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -131,14 +132,7 @@ const[sidebar,setSidebar]=useState(false);
     const [typeReturn,setTypeReturn]=useState("")
     const changeType=(e)=>{
       setTypeReturn(e.target.value);
-      if(e.target.value==="100")
-      setTypeName("Income");
-      else if(e.target.value==="200")
-      setTypeName("Expense")
-      else
-      setTypeName("All Transactions")
     }
-    const [typeName,setTypeName]=useState("All Transactions")
 
     const [contactId,setContactId]=useState("")
     
@@ -284,30 +278,33 @@ const[sidebar,setSidebar]=useState(false);
                     <div className='plus'><FaPlusCircle /></div>
                     <span className="text">New Transaction</span>
                 </div>
-                <button className='AllTran_button' value="" onClick={changeType}>All Transaction</button>
+                
                 <div className="boxes">
-                    <button value="100" onClick={changeType} className="box box1">
-                        {/* <i class="uil uil-thumbs-up"></i> */}
-                        <span className="text">Total Income</span>
+                    <div className="box box1">
+                        {/* <span className="text">Total Income</span> */}
                         <span className="number">&#8377;{total.Total_income}</span>
-                    </button>
+                    </div>
                     {/* <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Comments</span>
                         <span class="number">20,120</span>
                     </div> */}
-                    <button value="200" onClick={changeType} className="box box3">
-                        <i className="uil uil-share"></i>
-                        <span className="text">Total Expense</span>
+                    <div className="box box3">
+                        {/* <span className="text">Total Expense</span> */}
                         <span className="number">&#8377;{total.total_expense}</span>
-                    </button>
+                    </div>
                 </div>
             </div>
 
             <div className="activity">
                 <div className="typetitle">
-                    <i className="uil uil-clock-three"></i>
-                    <span className="text">{typeName}</span>
+                    {/* <i className="uil uil-clock-three"></i> */}
+                    
+                    <select onChange={changeType}>
+                        <option value="">All Transaction</option>
+                        <option value="100">Income</option>
+                        <option value="200">Expense</option>
+                    </select>
                 </div>
                 <ShowTranction contactId={contactId} type={typeReturn} changeType={changeType} condition={newTransaction}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2}/>
                

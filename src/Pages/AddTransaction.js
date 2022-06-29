@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import '../Css/AddTransaction.css'
+import '../Css/AddTransaction.css';
+import { basic_url } from '../common/constant';
 import axios from 'axios';
 function AddTransaction(props){
   const[contact,setContact]=useState([]);
@@ -18,7 +19,7 @@ function AddTransaction(props){
     useEffect(()=>{
       axios({
         method: 'get',
-        url: `https://money-track-project.herokuapp.com//accounts/contact/list/?limit=1000&offset=''`,
+        url: `${basic_url}/accounts/contact/list/?limit=1000&offset=''`,
         headers: {
         //  'Authorization': `bearer ${token}`,
          'bearer': localStorage.getItem('bearer'),
@@ -59,7 +60,7 @@ function AddTransaction(props){
     redirect: 'follow'
   };
 
-fetch("https://money-track-project.herokuapp.com//transactions/transactions/", requestOptions)
+fetch(`${basic_url}/transactions/transactions/`, requestOptions)
   .then(response => response.json())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));

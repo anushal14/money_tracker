@@ -1,4 +1,5 @@
 import React,{ useState} from 'react';
+import { basic_url } from '../common/constant';
 import axios from 'axios';
 import '../Css/SignIn.css';
 import logo from '../images/img.svg'
@@ -30,7 +31,7 @@ function SignIn(){
           
           axios({
             method: 'post',
-            url: 'https://money-track-project.herokuapp.com/accounts/login/',
+            url: `${basic_url}accounts/login/`,
             data: payload,
             headers: {
              // 'Authorization': `bearer ${token}`,

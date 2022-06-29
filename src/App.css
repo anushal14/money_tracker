@@ -15,9 +15,9 @@
     --black-light-color: #707070;
     --border-color: #e6e5e5;
     --toggle-color: #DDD;
-    --box1-color: #4DA3FF;
+    --box1-color: rgba(0, 128, 0, 0.6);
     --box2-color: #FFE6AC;
-    --box3-color: #E7D1FC;
+    --box3-color: rgba(222, 0, 0, 0.6);
     --title-icon-color: #fff;
     
     /* ====== Transition ====== */

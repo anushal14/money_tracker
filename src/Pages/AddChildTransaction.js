@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import { basic_url } from '../common/constant';
 import axios from 'axios';
 import '../Css/AddTransaction.css'
 function AddChildTransaction(props){
@@ -24,6 +25,7 @@ const[bearer,setBearer]=useState();
     })
     const handleSubmit=(e)=>{
       e.preventDefault();
+      props.setNewChildTransaction(false)
       console.log(transaction)
       const payload = {
         contact: transaction.contact.idencode,
@@ -36,7 +38,7 @@ const[bearer,setBearer]=useState();
       
       axios({
         method: 'post',
-        url: 'https://money-track-project.herokuapp.com//transactions/transactions/',
+        url: `${basic_url}/transactions/transactions/`,
         data: payload,
         headers: {
         //  'Authorization': `bearer ${token}`,
@@ -99,7 +101,7 @@ const[bearer,setBearer]=useState();
                 <span className="details">Type</span>
                 <select className='dropdown' name="type" value={transaction.type} onChange={handleChange} >
                 {/* <option>Select a Type</option> */}
-                <option >{props.personal.type===100?"Income":"Expense"}</option>
+                 <option >{props.personal.type===100?"Income":"Expense"}</option>
                 </select>
                 
               </div>

@@ -1,14 +1,15 @@
 import React, { useEffect,useState } from "react";
 import '../Css/ShowTransaction.css';
+import { basic_url } from '../common/constant';
 function ShowTranction(props){
     const[income,setIncome]=useState([]);
     
 
-    const ShowPerson=(idencode,contact_details,amount,type)=>{
+    const ShowPerson=(idencode,contact_details,amount,type,child_transaction)=>{
       localStorage.setItem('parent',idencode);
       props.setShowPersonDetail(true);
       props.onShowPersonal2(contact_details)
-      var coData={amount,type,idencode}
+      var coData={amount,type,idencode,child_transaction}
       props.onShowPersonal(coData);
       
     }
@@ -26,7 +27,7 @@ function ShowTranction(props){
         redirect: 'follow'
         };
   
-        fetch(`https://money-track-project.herokuapp.com//transactions/transactions/?type=${props.type}&contact=${props.contactId}&date=&upcoming=`, requestOptions)
+        fetch(`${basic_url}/transactions/transactions/?type=${props.type}&contact=${props.contactId}&date=&upcoming=`, requestOptions)
         .then(response => response.json())
         .then(result => {
           console.log('haaai',result);
@@ -72,17 +73,18 @@ function ShowTranction(props){
           <th><label>Amount</label></th>
           <th><label>Due Date</label></th>
           <th><label>Note</label></th>
-          <th><label>Action</label></th>
+          <th><label>Paid Amount</label></th>
         </tr>
       </thead>
       <tbody>
         {income.map((con)=>(
-        <tr key={con.idencode}>
+        <tr key={con.idencode} onClick={()=>ShowPerson(con.idencode,con.contact_details,con.amount,con.type,con.child_transactions)}>
       <td data-label="Name">{con.contact_details.name}</td>
           <td data-label="Amount" style={{color:con.type===200?"red":"green"}}>&#8377; {con.amount}</td>
           <td data-label="Due Date">{con.last_date}</td>
           <td data-label="Note">{con.note}</td>
-          <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode,con.contact_details,con.amount,con.type)} className="btn-invoice">View Details</button></td>
+          <td data-label="Paid Amount">&#8377; {con.child_transactions.amount?con.child_transactions.amount:0}<span style={{fontSize:"10px"}}>({con.child_transactions.count})</span></td>
+          {/* <td data-label="Action"><button onClick={()=>ShowPerson(con.idencode,con.contact_details,con.amount,con.type)} className="btn-invoice">View Details</button></td> */}
         </tr>
       ))}
       </tbody>
