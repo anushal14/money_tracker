@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import AddContacts from './Pages/AddContact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose,FaPlus,FaAngleDoubleUp,FaAngleUp,FaAngleDown } from 'react-icons/fa';
+import { FaSignOutAlt,FaPlusCircle,FaUser,FaWindowClose,FaPlus,FaAngleDoubleDown,FaAngleUp,FaAngleDown } from 'react-icons/fa';
 import AddTransaction from './Pages/AddTransaction';
 import ShowTranction from './Pages/ShowTransaction';
 import ShowByPerson from './Pages/ShowByPerson';
@@ -278,7 +278,7 @@ const[sidebar,setSidebar]=useState(false);
                     <div className='plus'><FaPlusCircle /></div>
                     <span className="text">New Transaction</span>
                 </div> */}
-                {mobile && (classna==="void") && <div className='downAngle' onClick={()=>setClassna("boxes")}><FaAngleDown/></div>} 
+                {mobile && (classna==="void") && <div className='downAngle' style={{color:"blue"}} onClick={()=>setClassna("boxes")}><FaAngleDoubleDown/></div>} 
                 <div className={mobile?classna:"boxes"}>
                     <div className="box box1">
                         {/* <span className="text">Total Income</span> */}

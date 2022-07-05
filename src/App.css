@@ -233,7 +233,7 @@ nav.close ~ .dashboard{
     width: calc(100% - 300px);
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0;
     padding-right: 1%;
     background-color: var(--panel-color);
     transition: var(--tran-05);
@@ -282,7 +282,7 @@ nav.close ~ .dashboard .top{
     border-radius: 50%;
 }
 .dashboard .dash-content{
-    padding-top: 70px;
+    padding-top: 57px;
 }
 .dash-content .title{
     display: flex;
@@ -322,7 +322,7 @@ nav.close ~ .dashboard .top{
     align-items: center;
     border-radius: 12px;
     width: calc(100% / 2 - 15px);
-    padding: 5px 10px;
+    padding: 0px 10px;
     background-color: var(--box1-color);
     transition: var(--tran-05);
 }
@@ -337,7 +337,7 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
 }
 .boxes .box .number{
-    font-size: 40px;
+    font-size: 39px;
     font-weight: 500;
     color: var(--text-color);
 }
@@ -359,7 +359,8 @@ nav.close ~ .dashboard .top{
     margin-left: 40px;
 }
 .void{
-    display: none;
+    opacity: 0;
+    height: 0.1px;
 }
 /* @media (max-width: 1000px) {
     nav{
@@ -540,7 +541,7 @@ nav.close ~ .dashboard .top{
 .selectBox{
     margin-right: 10px;
     width: 180px;
-        height: 30px;
+        height: 28px;
         border: 1px solid #999;
         font-size: 18px;
         color: #000000;
@@ -551,7 +552,7 @@ nav.close ~ .dashboard .top{
  .typetitle{
     display: flex;
     align-items: center;
-    margin: 20px 0 10px 10px;
+    margin: 8px 10px 8px 10px;
 }
 .typetitle .text{
     font-size: 24px;
