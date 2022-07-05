@@ -278,9 +278,9 @@ const[sidebar,setSidebar]=useState(false);
                     <div className='plus'><FaPlusCircle /></div>
                     <span className="text">New Transaction</span>
                 </div> */}
-                {mobile && (classna==="void") && <div className='downAngle' style={{color:"blue"}} onClick={()=>setClassna("boxes")}><FaAngleDoubleDown/></div>} 
-                <div className={mobile?classna:"boxes"}>
-                    <div className="box box1">
+                {mobile && (classna==="void") && <button className='downAngle' onClick={()=>setClassna("box")}><FaAngleDoubleDown/></button>} 
+                <div className="boxes">
+                    <div className={mobile?classna:"box"}>
                         {/* <span className="text">Total Income</span> */}
                         <span className="number">&#8377;{total.Total_income}</span>
                     </div>
@@ -289,12 +289,12 @@ const[sidebar,setSidebar]=useState(false);
                         <span class="text">Comments</span>
                         <span class="number">20,120</span>
                     </div> */}
-                    <div className="box box3">
+                    <div className={mobile?classna:"box"} style={{backgroundColor:"rgba(222, 0, 0, 0.6)"}}>
                         {/* <span className="text">Total Expense</span> */}
                         <span className="number">&#8377;{total.total_expense}</span>
                     </div>
                 </div>
-                {mobile && (classna==="boxes") && <div className='downAngle' onClick={()=>setClassna("void")}><FaAngleUp/></div>}
+                {mobile && (classna==="box") && <button className='downAngle' onClick={()=>setClassna("void")}><FaAngleUp/></button>}
             </div>
 
             <div className="activity">

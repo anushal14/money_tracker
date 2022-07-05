@@ -346,6 +346,7 @@ nav.close ~ .dashboard .top{
 }
 .boxes .box.box3{
     background-color: var(--box3-color);
+    /* margin-bottom: 10px; */
 }
 .user-img{
     width: 40px;
@@ -355,8 +356,16 @@ nav.close ~ .dashboard .top{
 }
 .downAngle{
     text-align: center;
-    width: 300px;
-    margin-left: 40px;
+    width: 80%;
+    border-radius: 20px;
+    margin-top: 5px;
+    background-color: #0e4bf16c;
+    border: #0e4bf16c;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.overview{
+    text-align: center;
+    margin: 0;
 }
 .void{
     opacity: 0;
@@ -551,7 +560,8 @@ nav.close ~ .dashboard .top{
 }
  .typetitle{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    text-align: center;
     margin: 8px 10px 8px 10px;
 }
 .typetitle .text{
