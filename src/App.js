@@ -1,5 +1,7 @@
 import React, { useState,useEffect} from 'react'
 import userImg from './images/user.png';
+import logo from './images/logo.png';
+import search  from './images/search.png';
 import { basic_url } from './common/constant';
 import { Navigate } from 'react-router-dom';
 import AddContacts from './Pages/AddContact';
@@ -186,29 +188,32 @@ const[sidebar,setSidebar]=useState(false);
 <nav onScroll={handleScroll}>
         <div className="logo-name">
             <div className="logo-image">
-               $
+               <img src={logo}/>
             </div>
 
             <span className="logo_name">Money Tracker</span>
-            {mobile && <div onClick={()=>setSidebar(false)} style={{fontSize:"24px",paddingLeft:"75px",color:"red"}} ><FaWindowClose/></div>}
+            {mobile && <div onClick={()=>setSidebar(false)} style={{fontSize:"24px",color:"red"}} ><FaWindowClose/></div>}
         </div>
 
         <div className="menu-items">
         <ul className="logout-mode">
                 
 
-                <li className="mode">
-                    <a href='#'>
-                        <i className="uil uil-moon"></i>
+                <div className="contactMode">
+                    
                     <span className="contacts">Contacts</span>
-                </a>
+                
                 
 
                 <div className="mode-toggle">
                 <div onClick={addContact} className='plus'><FaPlusCircle /></div>
                 </div>
-            </li>
+            </div>
             </ul>
+            <div className='contactSearch'>
+                <img src={search}/>
+                <input className='ContactSearchBox' type="text" placeholder="Find a Person..."/>
+            </div>
             <ul className="nav-links">
             {contactList.map((con)=>(          
                 <li className="mode" key={con.idencode} onClick={()=>(setContactId(con.idencode),setSidebar(false))}><a href='#'>
@@ -228,28 +233,6 @@ const[sidebar,setSidebar]=useState(false);
                  ))}
                  <div>{loading}</div>
             </ul>
-            {/* <div className="switchbutton">
-        <button className="nextbtn" disabled={previous===null?true:false} value={previous} onClick={onSwitchPage}>&#8592;Previous</button>
-        <button className="nextbtn" disabled={next===null?true:false} value={next} onClick={onSwitchPage}>Next&#8594;</button>
-      </div> */}
-            
-            {/* <ul class="logout-mode">
-                <li><a href="#">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
-
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
-            </li>
-            </ul> */}
         </div>
     </nav>
 {!sidebar &&

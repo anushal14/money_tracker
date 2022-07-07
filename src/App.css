@@ -85,23 +85,24 @@ nav.close{
 nav .logo-name{
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
 }
 nav .logo-image{
     display: flex;
     justify-content: center;
-    min-width: 45px;
+    /* min-width: 45px; */
 }
 nav .logo-image img{
-    width: 40px;
+    width: 30px;
     object-fit: cover;
     border-radius: 50%;
 }
 
 nav .logo-name .logo_name{
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-left: 14px;
+    font-size: 28px;
+    font-weight: bolder;
+    color: rgb(64, 87, 171);
+    /* margin-left: 14px; */
     transition: var(--tran-05);
 }
 nav.close .logo_name{
@@ -109,7 +110,7 @@ nav.close .logo_name{
     pointer-events: none;
 }
 nav .menu-items{
-    margin-top: 32px;
+    margin-top: 5px;
     margin-left: -28px;
     /* height: calc(100% - 90px); */
     display: flex;
@@ -168,10 +169,15 @@ body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name{
     color: var(--text-color);
 }
-/* .menu-items .logout-mode{
-    padding-top: 10px;
-    border-top: 1px solid var(--border-color);
-} */
+.menu-items .logout-mode{
+ margin-bottom: 5px;
+}
+.contactMode{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0.6em 1em;
+}
 .menu-items .mode{
     display: flex;
     align-items: center;
@@ -371,6 +377,27 @@ nav.close ~ .dashboard .top{
     opacity: 0;
     height: 0.1px;
 }
+
+.contactSearch{
+    margin-left: 42px;  
+    width: 83%;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    margin-bottom: 5px;
+}
+.contactSearch img{
+    width: 18px;
+}
+.contactSearch input{
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
 /* @media (max-width: 1000px) {
     nav{
         width: 73px;
@@ -517,23 +544,20 @@ nav.close ~ .dashboard .top{
     width: 32px;
   }
   .userplus{
-    width: 33px;
-    /* align-content: center; */
-    height: 30px;
+    width: 42px;
+    height: 42px;
     text-align: center;
-   /* align-self: auto; */
-   color: black;
-    /* background-color: black; */
-    border-radius: 20px;
-    font-size: large;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
   0 10px 10px rgba(0,0,0,0.22);
-  margin: 0px 0 10px 10px;
   }
   .userDiv{
-      padding-left: 10px;
+      padding-left:20px;
   }
   .userplus:hover{
     text-align: center;
