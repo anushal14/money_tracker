@@ -1,4 +1,5 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState,useEffect} from 'react';
+import Dialog from './Pages/Dialogue';
 import userImg from './images/user.png';
 import logo from './images/logo.png';
 import search  from './images/search.png';
@@ -174,7 +175,7 @@ const[sidebar,setSidebar]=useState(false);
       }
 
         const[classna,setClassna]=useState("void")
-
+        const[dialogue,setDialogue]=useState(false)
 
   if(logout){
     return <div>
@@ -252,7 +253,7 @@ const[sidebar,setSidebar]=useState(false);
             </div>
             <div className="right-zone">
             <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img"/>
-            <div className="notification" onClick={onLogout}><FaSignOutAlt/></div>
+            <div className="notification" onClick={()=>setDialogue(true)}><FaSignOutAlt/></div>
         </div>
         </div>
         <div className="dash-content">
@@ -309,6 +310,7 @@ const[sidebar,setSidebar]=useState(false);
     {newContact && <AddContacts setNewContact={setNewContact} />}
     
     {newTransaction && <AddTransaction setNewTransaction={setNewTransaction} contactList={contactList}/>}
+    {dialogue && <Dialog  onDialog={setDialogue} onLogout={onLogout}/>}
     </div>
   
   );
