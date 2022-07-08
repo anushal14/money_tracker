@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { basic_url } from '../common/constant';
+import { FaWindowClose} from 'react-icons/fa';
 import '../Css/AddContact.css'
 function AddContacts(props){
   const[contact,setContact]=useState({
@@ -74,7 +75,7 @@ function AddContacts(props){
         <div className="signupContainer">
         
         <div className="title"><span>Add Contact </span>
-        <span className='right'  onClick={Cancel}>cancel</span></div>
+        <span className='ContactRight'  onClick={Cancel}><FaWindowClose/></span></div>
         <div className="content">
           <form>
             <div className="user-details">

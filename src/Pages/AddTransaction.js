@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import '../Css/AddTransaction.css';
+import { FaWindowClose} from 'react-icons/fa';
 import { basic_url } from '../common/constant';
 import axios from 'axios';
 function AddTransaction(props){
@@ -87,7 +88,7 @@ fetch(`${basic_url}/transactions/transactions/`, requestOptions)
         
         <div className="signupContainer">
         <div className="title"><span>Add Transaction </span>
-        <span className='right' onClick={Cancel}>cancel</span>
+        <span className='TransactionRight' onClick={Cancel}><FaWindowClose/></span>
         </div>
         
         <div className="content">

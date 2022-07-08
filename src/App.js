@@ -193,7 +193,11 @@ const[sidebar,setSidebar]=useState(false);
             </div>
 
             <span className="logo_name">Money Tracker</span>
-            {mobile && <div onClick={()=>setSidebar(false)} style={{fontSize:"24px",color:"red"}} ><FaWindowClose/></div>}
+            {mobile &&
+             <div onClick={()=>setSidebar(false)} 
+                    style={{fontSize:"25px",transform: "rotate(-90deg)"}} >
+                    <FaAngleDown/>
+            </div>}
         </div>
 
         <div className="menu-items">

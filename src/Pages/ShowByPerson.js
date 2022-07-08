@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import '../Css/ShowByPerson.css';
+import { FaWindowClose} from 'react-icons/fa';
 import { basic_url } from '../common/constant';
 import axios from 'axios';
 import userImg from '../images/user.png'
@@ -52,7 +53,7 @@ return(
 <div className="title">
 <img src={(props.Personal2.image!==null)?props.Personal2.image:userImg} alt="" className="user-img"/>
 <span style={{marginLeft:"10px"}}>{props.Personal2.name}</span>
-<span className='right'onClick={()=>props.setShowPersonDetail(false)}>cancel</span>
+<span className='right'onClick={()=>props.setShowPersonDetail(false)}><FaWindowClose/></span>
 </div>
 <div className="Child_btn">
 {!(props.Personal.status===300)&&<button disabled={props.Personal.status===300?true:false} className='newButton' onClick={()=>setNewChildTransaction(true)}>New Transaction</button>}

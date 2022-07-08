@@ -26,14 +26,9 @@
     max-width: 640px;
     background-color: white;
 } */
-.right{
+.TransactionRight{
     color: red;
     float: right;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
-    /* background:linear-gradient(to right, #FF4B2B, #FF416C); */
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-style: double;
 }
