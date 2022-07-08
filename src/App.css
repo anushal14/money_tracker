@@ -83,9 +83,17 @@ nav.close{
     width: 73px;
 }
 nav .logo-name{
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    width: 299px;
+    padding: 15px 10px;
+    z-index: 10;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(220, 220, 220);
 }
 nav .logo-image{
     display: flex;
@@ -110,12 +118,13 @@ nav.close .logo_name{
     pointer-events: none;
 }
 nav .menu-items{
-    margin-top: 5px;
+    margin-top: 59px;
     margin-left: -28px;
     /* height: calc(100% - 90px); */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 30px;
 }
 .menu-items li{
     list-style: none;
@@ -465,6 +474,10 @@ nav.close ~ .dashboard .top{
         width: 350px;
         
     }
+    nav .logo-name{
+        width: 349px;
+        background: rgb(225, 225, 225);
+    }
     nav.close{
         width: 73px;
     }
@@ -525,15 +538,15 @@ nav.close ~ .dashboard .top{
   }
 
   .plus{
-    width: 30px;
+    width: 35px;
     /* align-content: center; */
-    height: 30px;
+    height: 35px;
     text-align: center;
    /* align-self: auto; */
    color: white;
-    background-color: black;
+    background-color: rgb(0, 55, 255);
     border-radius: 50%;
-    font-size: large;
+    font-size: 21px;
     font-weight: bold;
     cursor: pointer;
   }
