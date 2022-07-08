@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import { FaWindowClose} from 'react-icons/fa';
 import { basic_url } from '../common/constant';
 import axios from 'axios';
 import '../Css/AddTransaction.css'
@@ -77,7 +78,7 @@ const[bearer,setBearer]=useState();
         
         <div className="signupContainer">
         <div className="title"><span>Add Transaction </span>
-        <span className='right' onClick={Cancel}>cancel</span>
+        <span className='right' onClick={Cancel}><FaWindowClose/></span>
         </div>
         <div className="content">
           <form>
