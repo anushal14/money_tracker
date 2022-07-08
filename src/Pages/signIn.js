@@ -5,6 +5,13 @@ import '../Css/SignIn.css';
 import logo from '../images/img.svg'
 import { Link,Navigate } from 'react-router-dom';
 function SignIn(){
+    
+//for back button diable
+    window.history.pushState(null,null,window.location.href);
+  window.onpopstate=function(event){
+    window.history.go(1);
+  }
+
     const[loginInput,setLoginInput]=useState({
         password: "",
         username: "",

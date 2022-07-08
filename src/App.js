@@ -23,8 +23,11 @@ const[mobile,setMobile]=useState(false);
 const[sidebar,setSidebar]=useState(false);
   const[bearer,setBearer]=useState();
   const[userId,setUserId]=useState();
-
   const[total,setTotal]=useState([]);
+  window.history.pushState(null,null,window.location.href);
+  window.onpopstate=function(event){
+    window.history.go(1);
+  }
   useEffect(()=>{
       if(window.innerWidth<1000){
           setMobile(true);
