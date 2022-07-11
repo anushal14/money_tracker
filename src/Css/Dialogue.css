@@ -1,52 +1,58 @@
-.dialoguePage{
-    position:fixed;
+.dialoguePage {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-Color: rgba(0,0,0,0.5);
+    background-Color: rgba(0, 0, 0, 0.5);
 }
-.dialogueBox{
-    display:flex;
+
+.dialogueBox {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     background: white;
     padding: 20px;
     border-radius: 10px;
-    width:330px;
+    width: 330px;
 }
-.dialogueButtons{
-    display: flex; 
+
+.dialogueButtons {
+    display: flex;
     align-items: "center";
     justify-content: space-evenly;
 }
-.DialogueCancel{
+
+.DialogueCancel {
     background: rgb(152, 152, 152);
     color: black;
     padding: 10px 20px;
     margin-left: 4px;
     border: none;
     cursor: pointer;
-    border-radius:5px;
+    border-radius: 5px;
     font-weight: 500;
 }
-.DialogueLogout{
+
+.DialogueLogout {
     background: rgb(0, 55, 255);
     color: white;
     padding: 10px 20px;
     margin-right: 4px;
     border: none;
     cursor: pointer;
-    border-radius:5px;
+    border-radius: 5px;
     font-weight: 500;
 }
-.DialogueTitle{
+
+.DialogueTitle {
     font-weight: 600;
 }
-.DialoguePara{
+
+.DialoguePara {
     font-weight: 500;
 }

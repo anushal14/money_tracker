@@ -2,7 +2,7 @@
 
 
 .loginbody {
-	margin: 0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -20,7 +20,7 @@
 }
 
 .loginside {
-	display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     background: url(../images/bk.png) no-repeat;
@@ -51,7 +51,7 @@
 .separator {
     width: 150px;
     height: 4px;
-    background-color:#FF416C;
+    background-color: #FF416C;
     margin: 24px;
 }
 
@@ -73,7 +73,7 @@
     width: 100%;
     position: relative;
     margin-bottom: 24px;
-	border: 0;
+    border: 0;
 }
 
 .login-input,
@@ -92,17 +92,17 @@
     padding: 14px 64px;
 }
 
-.login-input ~ i {
+.login-input~i {
     position: absolute;
     left: 32px;
     top: 50%;
     transform: translateY(-50%);
     color: #888;
-    transition: color   0.4s;
+    transition: color 0.4s;
 }
 
-.login-input ~ i {
-    color:  #FF4B2B;
+.login-input~i {
+    color: #FF4B2B;
 }
 
 .submit {
@@ -112,7 +112,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
-    background-image:linear-gradient(to right, #FF416C, #FF4B2B);;;
+    background-image: linear-gradient(to right, #FF416C, #FF4B2B);
     cursor: pointer;
     transition: opacity 0.4s;
 }
@@ -133,5 +133,5 @@
     .loginside {
         display: none;
     }
-	
+
 }

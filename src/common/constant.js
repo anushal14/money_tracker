@@ -1,1 +1,1 @@
-export const basic_url="https://money-track-project.herokuapp.com/"
+export const basic_url = "https://money-track-project.herokuapp.com/"
