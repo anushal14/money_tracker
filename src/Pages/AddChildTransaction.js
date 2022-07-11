@@ -4,13 +4,15 @@ import { basic_url } from '../common/constant';
 import axios from 'axios';
 import '../Css/AddTransaction.css'
 function AddChildTransaction(props) {
-
+  const amountValue = props.Completed ? props.balance : ""
+  const current = new Date();
+  const date = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
   const [transaction, setTransaction] = useState({
     contact: props.personal2,
     parentTransaction: props.personal.idencode,
-    amount: "",
+    amount: amountValue,
     note: "",
-    lastDate: "",
+    lastDate: date,
     type: props.personal.type
   });
   const handleChange = (e) => {
@@ -35,7 +37,8 @@ function AddChildTransaction(props) {
     }
     else {
       props.setNewChildTransaction(false)
-      console.log(transaction)
+      console.log(transaction.lastDate)
+      console.log("date", date)
       const payload = {
         contact: transaction.contact.idencode,
         parent_transaction: transaction.parentTransaction,
@@ -80,39 +83,43 @@ function AddChildTransaction(props) {
               <span className='right' onClick={Cancel}><FaWindowClose /></span>
             </div>
             <div className="content">
-              <form>
-                <div className="user-details">
-                  <div className="input-box">
-                    <span className="details">Contact</span>
-                    <select className='dropdown' name="contact" value={transaction.contact.name} onChange={handleChange} id="cars">
-                      <option>{props.personal2.name}</option>
-                    </select>
+              {!props.Completed &&
+                <form>
+                  <div className="user-details">
+                    <div className="input-box">
+                      <span className="details">Amount</span>
+                      <input type="number" placeholder="Enter Amount" name="amount" value={transaction.amount} onChange={handleChange} required />
+                      <div style={{ color: "red" }}>{error}</div>
+                    </div>
+                    <div className="input-box">
+                      <span className="details">Note</span>
+                      <input type="text" placeholder="Enter any notes" name="note" value={transaction.note} onChange={handleChange} required />
+                    </div>
+                    <div className="input-box">
+                      <span className="details">Date</span>
+                      <input type="date" placeholder="Enter Dtae" name="lastDate" value={transaction.lastDate} readOnly required />
+                    </div>
                   </div>
-                  <div className="input-box">
-                    <span className="details">Amount</span>
-                    <input type="number" placeholder="Enter Amount" name="amount" value={transaction.amount} onChange={handleChange} required />
-                    <div style={{ color: "red" }}>{error}</div>
+                  <div className="button" onClick={handleSubmit}>
+                    <input type="submit" value="Add" />
                   </div>
-                  <div className="input-box">
-                    <span className="details">Note</span>
-                    <input type="text" placeholder="Enter any notes" name="note" value={transaction.note} onChange={handleChange} required />
+                </form>}
+              {props.Completed &&
+                <form>
+                  <div className="user-details">
+                    <div className="input-box">
+                      <span className="details">Note</span>
+                      <input type="text" placeholder="Enter any notes" name="note" value={transaction.note} onChange={handleChange} required />
+                    </div>
+                    <div className="input-box">
+                      <span className="details">Date</span>
+                      <input type="date" placeholder="Enter Dtae" name="lastDate" value={transaction.lastDate} readOnly required />
+                    </div>
                   </div>
-                  <div className="input-box">
-                    <span className="details">Last Date</span>
-                    <input type="date" placeholder="Enter Dtae" name="lastDate" value={transaction.lastDate} onChange={handleChange} required />
+                  <div className="button" onClick={handleSubmit}>
+                    <input type="submit" value="Add" />
                   </div>
-                  <div className="input-box">
-                    <span className="details">Type</span>
-                    <select className='dropdown' name="type" value={transaction.type} onChange={handleChange} >
-                      {/* <option>Select a Type</option> */}
-                      <option >{props.personal.type === 100 ? "Income" : "Expense"}</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="button" onClick={handleSubmit}>
-                  <input type="submit" value="Add" />
-                </div>
-              </form>
+                </form>}
             </div>
           </div>
         </div>

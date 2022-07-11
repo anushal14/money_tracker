@@ -27,7 +27,15 @@ function ShowByPerson(props) {
 
       })
   }, [])
-
+  const completeTransaction = (e) => {
+    setNewChildTransaction(true);
+    setCompleted(true);
+  }
+  const newCTransaction = (e) => {
+    setNewChildTransaction(true);
+    setCompleted(false);
+  }
+  const [Completed, setCompleted] = useState(false);
   const [newChildTransaction, setNewChildTransaction] = useState(false);
   const onDelete = (e) => {
     e.preventDefault();
@@ -57,9 +65,9 @@ function ShowByPerson(props) {
           <span className='right' onClick={() => props.setShowPersonDetail(false)}><FaWindowClose /></span>
         </div>
         <div className="Child_btn">
-          {!(props.Personal.status === 300) && <button disabled={props.Personal.status === 300 ? true : false} className='newButton' onClick={() => setNewChildTransaction(true)}><FaPlus /></button>}
+          {!(props.Personal.status === 300) && <><button className='newButton' onClick={newCTransaction}><FaPlus /></button>
+            <button className='trashButton' style={{ background: "rgba(0, 128, 0, 0.6)" }} onClick={completeTransaction}>Completed</button></>}
           <button className='trashButton' value={props.Personal.idencode} onClick={onDelete}><FaTrash /></button>
-          <button className='trashButton' style={{ background: "rgba(0, 128, 0, 0.6)" }}>Completed</button>
           <span className="forTotal">Total Amount: <span style={{ color: props.Personal.type === 200 ? "red" : "green" }}>&#8377; {props.Personal.amount}</span></span>
           <br />
           <span className="forTotal">Balance Amount: <span >&#8377; {props.Personal.amount - props.Personal.child_transaction.amount}</span></span>
@@ -89,7 +97,7 @@ function ShowByPerson(props) {
           </div>
         </div>
       </div>
-      {newChildTransaction && <AddChildTransaction balance={props.Personal.amount - props.Personal.child_transaction.amount} setNewChildTransaction={setNewChildTransaction} personal2={props.Personal2} personal={props.Personal} />}
+      {newChildTransaction && <AddChildTransaction Completed={Completed} balance={props.Personal.amount - props.Personal.child_transaction.amount} setNewChildTransaction={setNewChildTransaction} personal2={props.Personal2} personal={props.Personal} />}
     </div>
   )
 }
