@@ -39,6 +39,7 @@ table tr {
 	border: 1px solid #e1e5e9;
 	padding: .35em;
 	border-radius: 3px;
+	box-shadow: rgba(174, 174, 174, 0.35) 0px -50px 36px -28px inset;
 
 }
 
@@ -50,18 +51,14 @@ table thead tr:first-child {
 	border: 1px solid #0f82e695;
 }
 
-table th,
 table td {
-	padding: 0.625em;
-	text-align: center;
+	padding: 0.525em 0 0.425em 0.625em;
+	text-align:left;
 
 	font-size: 14px;
 	/* font-family: cursive; */
 }
 
-table tr:hover {
-	box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
-}
 
 table td:nth-child(3) {
 	font-size: 18px;
@@ -86,28 +83,44 @@ table td:nth-child(5) {
 }
 
 table th {
-	font-size: .85em;
+	font-size: .95em;
 	letter-spacing: .1em;
 	text-transform: uppercase;
 	background: #4DA3FF;
 	color: #FFF;
+	padding: 0.625em 0 0.625em 1.1em;
 }
 
 table tbody tr td .btn-invoice {
 	background: #4DA3FF;
+	border :none;
+  border-radius: 2px;
+  -webkit-box-shadow :0 1px 2px 0 rgba(0,0,0,0.4);
 	color: #FFF;
 	font-size: 13px;
-	padding: 10px 20px;
-	border: 0;
+	display :inline-block;
+	padding: 6px 14px;
+	font-weight: 600;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.4);
+  outline: none;
 	/* font-family: cursive; */
 }
-
+table tbody tr td .btn-invoice:not(:last-child) {
+	border-right: none; /* Prevent double borders */
+  }
+table tbody tr td .btn-invoice:hover{
+	background: #1272d8;
+}
 tbody tr:nth-child(even) {
-	background-color: #eee;
+	background-color:  #ffd453cb;
+ box-shadow: 3px 3px 3px 0 #bdbdbd;
+ /* margin: 0.75rem; */
+ border:3px solid #ffd453cb;
 }
 
 tbody tr:nth-child(odd) {
 	background-color: #fff;
+	
 }
 
 .statusDot {
@@ -122,7 +135,7 @@ tbody tr:nth-child(odd) {
 .StatusLine {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: left;
 }
 
 @media screen and (max-width: 600px) {

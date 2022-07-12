@@ -37,8 +37,7 @@ function ShowByPerson(props) {
   }
   const [Completed, setCompleted] = useState(false);
   const [newChildTransaction, setNewChildTransaction] = useState(false);
-  const onDelete = (e) => {
-    e.preventDefault();
+  const onDelete = (id) => {
     props.setShowPersonDetail(false);
     var myHeaders = new Headers();
     myHeaders.append("bearer", localStorage.getItem('bearer'));
@@ -50,7 +49,7 @@ function ShowByPerson(props) {
       redirect: 'follow'
     };
 
-    fetch(`${basic_url}/transactions/transactions/${e.target.value}`, requestOptions)
+    fetch(`${basic_url}/transactions/transactions/${id}`, requestOptions)
       .then(response => response.json())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -67,7 +66,7 @@ function ShowByPerson(props) {
         <div className="Child_btn">
           {!(props.Personal.status === 300) && <><button className='newButton' onClick={newCTransaction}><FaPlus /></button>
             <button className='trashButton' style={{ background: "rgba(0, 128, 0, 0.6)" }} onClick={completeTransaction}>Completed</button></>}
-          <button className='trashButton' value={props.Personal.idencode} onClick={onDelete}><FaTrash /></button>
+          <button className='trashButton' onClick={()=>onDelete(props.Personal.idencode)}><FaTrash /></button>
           <span className="forTotal">Total Amount: <span style={{ color: props.Personal.type === 200 ? "red" : "green" }}>&#8377; {props.Personal.amount}</span></span>
           <br />
           <span className="forTotal">Balance Amount: <span >&#8377; {props.Personal.amount - props.Personal.child_transaction.amount}</span></span>
