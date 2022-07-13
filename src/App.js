@@ -78,6 +78,25 @@ function App() {
 
   const [contactList, setContactlist] = useState([])
 
+  const searchContact=(e)=>{
+    var myHeaders = new Headers();
+    myHeaders.append("bearer", localStorage.getItem('bearer'));
+    myHeaders.append("user-id", localStorage.getItem('user-id'));
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    fetch(`${basic_url}accounts/contact/?name=${e.target.value}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setContactlist(result.results);
+        setNext(result.next);
+      }).catch(error => console.log('error', error));
+  }
+
   const addNewTransaction = () => {
     setNewTransaction(true);
     var myHeaders = new Headers();
@@ -207,7 +226,7 @@ function App() {
           </ul>
           <div className='contactSearch'>
             <img src={search} />
-            <input className='ContactSearchBox' type="text" placeholder="Find a Person..." />
+            <input className='ContactSearchBox' type="text" name="contactName"  onChange={searchContact}  placeholder="Find a Person..." />
           </div>
           <ul className="nav-links">
             {contactList.map((con) => (
