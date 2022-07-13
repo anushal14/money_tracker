@@ -64,9 +64,10 @@ function ShowByPerson(props) {
           <span className='right' onClick={() => props.setShowPersonDetail(false)}><FaWindowClose /></span>
         </div>
         <div className="Child_btn">
-          {!(props.Personal.status === 300) && <><button className='newButton' onClick={newCTransaction}><FaPlus /></button>
-            <button className='trashButton' style={{ background: "rgba(0, 128, 0, 0.6)" }} onClick={completeTransaction}>Completed</button></>}
-          <button className='trashButton' onClick={()=>onDelete(props.Personal.idencode)}><FaTrash /></button>
+          {!(props.Personal.status === 300) && <>
+            <button className='actionButton' style={{ background: "rgba(0, 55, 255, 0.767)" }} onClick={newCTransaction}><FaPlus /></button>
+            <button className='actionButton' style={{ background: "rgba(0, 128, 0, 0.6)", marginLeft: "10px", marginRight: "10px" }} onClick={completeTransaction}>Completed</button></>}
+          <button className='actionButton' style={{ background: "rgba(255, 0, 0, 0.664)"}} onClick={() => onDelete(props.Personal.idencode)}><FaTrash /></button>
           <span className="forTotal">Total Amount: <span style={{ color: props.Personal.type === 200 ? "red" : "green" }}>&#8377; {props.Personal.amount}</span></span>
           <br />
           <span className="forTotal">Balance Amount: <span >&#8377; {props.Personal.amount - props.Personal.child_transaction.amount}</span></span>
@@ -88,7 +89,7 @@ function ShowByPerson(props) {
                     <td data-label="Amount">&#8377; {con.amount}</td>
                     <td data-label="Due Date">{con.date}</td>
                     <td data-label="Note">{con.note}</td>
-                    <td data-label="Action"><button value={con.idencode} onClick={onDelete} className="deleteButton">Delete</button></td>
+                    <td data-label="Action"><button style={{ background: "rgba(255, 0, 0, 0.73)", marginLeft: "10px" }} onClick={() => onDelete(con.idencode)} className="actionButton">Delete</button></td>
                   </tr>
                 ))}
               </tbody>

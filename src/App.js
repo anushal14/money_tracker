@@ -233,8 +233,7 @@ function App() {
             {mobile && <div className='userDiv'><div className='userplus' onClick={() => setSidebar(true)}><FaUser /></div></div>}
             <i className="uil uil-bars sidebar-toggle"></i>
             <div className="search-box">
-              <i className="uil uil-search"></i>
-              <input type="text" placeholder="Search here..." />
+              <input type="text" placeholder="Search by notes..." />
             </div>
             <div className="right-zone">
               <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img" />

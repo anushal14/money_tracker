@@ -51,13 +51,13 @@ function ShowTranction(props) {
       })
       .catch(error => console.log('error', error));
   }
-  const [showNote,setShowNote] = useState("")
-  const checkNote=(id)=>{
-    if (showNote===id){
-    setShowNote("");
+  const [showNote, setShowNote] = useState("")
+  const checkNote = (id) => {
+    if (showNote === id) {
+      setShowNote("");
     }
     else
-    setShowNote(id);
+      setShowNote(id);
   }
   const findStatus = (status) => {
     if (status === 300)
@@ -81,25 +81,23 @@ function ShowTranction(props) {
             <th><label>Action</label></th>
           </tr>
         </thead>
-        
-          {income.map((con) => (
-            <tbody>
+        {income.map((con) => (
+          <tbody>
             <tr key={con.idencode} >
               <td data-label="Name" className="StatusLine"><div style={{ backgroundColor: findStatus(con.status) }} className="statusDot"></div><div>{con.contact_details.name}</div></td>
               <td data-label="Amount" style={{ color: con.type === 200 ? "red" : "green" }}>&#8377; {con.amount}</td>
               <td data-label="Due Date">{con.last_date}</td>
               {/* <td data-label="Note">{con.note}</td> */}
               <td data-label="Paid Amount">&#8377; {con.child_transactions.amount ? con.child_transactions.amount : 0}<span style={{ fontSize: "10px" }}>({con.child_transactions.count})</span></td>
-              <td data-label="Action"><button className="btn-invoice" style={{marginRight: "0.5rem"}} onClick={()=>checkNote(con.idencode)}>Note</button>
+              <td data-label="Action"><button className="btn-invoice" style={{ marginRight: "0.5rem" }} onClick={() => checkNote(con.idencode)}>Note</button>
                 <button onClick={() => ShowPerson(con.idencode, con.contact_details, con.amount, con.status, con.type, con.child_transactions)} className="btn-invoice">Details</button>
               </td>
             </tr>
-            {showNote===con.idencode && <tr >
-              
-            <td style={{paddingLeft:"35px"}} colSpan={5}>{con.note}</td>
-          </tr>}
+            {showNote === con.idencode && <tr className="noteTr">
+              <td style={{ paddingLeft: "35px", fontSize: "15px" }} colSpan={5}>{con.note}</td>
+            </tr>}
           </tbody>
-          ))}
+        ))}
       </table>
       <div className="switchbutton">
         <button className="nextbtn" disabled={previous === null ? true : false} value={previous} onClick={onSwitchPage}>&#8592;Previous</button>

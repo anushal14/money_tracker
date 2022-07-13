@@ -307,7 +307,7 @@ nav.close~.dashboard .top {
     position: absolute;
     border: 1px solid var(--border-color);
     background-color: var(--panel-color);
-    padding: 0 25px 0 50px;
+    padding: 0 25px 0 10px;
     border-radius: 5px;
     height: 100%;
     width: 100%;

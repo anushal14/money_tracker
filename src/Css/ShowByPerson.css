@@ -45,33 +45,17 @@
   padding-bottom: 11px;
 }
 
-.deleteButton {
+.actionButton {
   cursor: pointer;
-  margin-left: 10px;
-  padding: 0.5em 1.5em;
   color: white;
   border: none;
-  border-radius: 5px;
-  background: rgba(255, 0, 0, 0.664)
-}
-
-.newButton {
-  cursor: pointer;
-  padding: 0.1em 0.5em 0.2em 0.5em;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  background: rgba(0, 55, 255, 0.767)
-}
-
-.trashButton {
-  cursor: pointer;
-  margin-left: 10px;
-  padding: 0.1em 0.5em 0.2em 0.5em;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  background: rgba(255, 0, 0, 0.664)
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
 }
 
 .forTotal {

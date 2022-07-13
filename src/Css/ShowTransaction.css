@@ -40,7 +40,6 @@ table tr {
 	padding: .35em;
 	border-radius: 3px;
 	box-shadow: rgba(174, 174, 174, 0.35) 0px -50px 36px -28px inset;
-
 }
 
 table td {
@@ -53,8 +52,7 @@ table thead tr:first-child {
 
 table td {
 	padding: 0.525em 0 0.425em 0.625em;
-	text-align:left;
-
+	text-align: left;
 	font-size: 14px;
 	/* font-family: cursive; */
 }
@@ -70,6 +68,7 @@ table td:nth-child(4) {
 
 table td:nth-child(1) {
 	font-size: 18px;
+	font-weight: 500;
 }
 
 table td:nth-child(2) {
@@ -93,34 +92,37 @@ table th {
 
 table tbody tr td .btn-invoice {
 	background: #4DA3FF;
-	border :none;
-  border-radius: 2px;
-  -webkit-box-shadow :0 1px 2px 0 rgba(0,0,0,0.4);
+	border: none;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
 	color: #FFF;
 	font-size: 13px;
-	display :inline-block;
+	display: inline-block;
 	padding: 6px 14px;
 	font-weight: 600;
-	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.4);
-  outline: none;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+	outline: none;
 	/* font-family: cursive; */
 }
+
 table tbody tr td .btn-invoice:not(:last-child) {
-	border-right: none; /* Prevent double borders */
-  }
-table tbody tr td .btn-invoice:hover{
+	border-right: none;
+	/* Prevent double borders */
+}
+
+table tbody tr td .btn-invoice:hover {
 	background: #1272d8;
 }
-tbody tr:nth-child(even) {
-	background-color:  #ffd453cb;
- box-shadow: 3px 3px 3px 0 #bdbdbd;
- /* margin: 0.75rem; */
- border:3px solid #ffd453cb;
+
+.noteTr {
+	background-color: #ffd453cb;
+	box-shadow: 3px 3px 3px 0 #bdbdbd;
+	/* margin: 0.75rem; */
+	border: 3px solid #75755dcb;
 }
 
 tbody tr:nth-child(odd) {
 	background-color: #fff;
-	
 }
 
 .statusDot {
