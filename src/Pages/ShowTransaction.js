@@ -30,7 +30,7 @@ function ShowTranction(props) {
         setPrevious(result.previous);
       })
       .catch(error => console.log('error', error));
-  }, [props.condition, props.changeType, props.changeStatus]);
+  }, [props.condition, props.type, props.statusType]);
 
   const onSwitchPage = (e) => {
     var myHeaders = new Headers();

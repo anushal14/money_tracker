@@ -11,6 +11,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaSignOutAlt, FaPlusCircle, FaUser, FaPlus, FaAngleDoubleDown, FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import AddTransaction from './Pages/AddTransaction';
+import Dropdown from './trial/trial';
 import ShowTranction from './Pages/ShowTransaction';
 import ShowByPerson from './Pages/ShowByPerson';
 function App() {
@@ -131,13 +132,13 @@ function App() {
     setPersonal2(data);
   }
   const [typeReturn, setTypeReturn] = useState("")
-  const changeType = (e) => {
-    setTypeReturn(e.target.value);
-  }
+  // const changeType = (e) => {
+  //   setTypeReturn(e.target.value);
+  // }
   const [statusType, setStatusType] = useState("")
-  const changeStatus = (e) => {
-    setStatusType(e.target.value);
-  }
+  // const changeStatus = (e) => {
+  //   setStatusType(e.target.value);
+  // }
 
   const [contactId, setContactId] = useState("")
 
@@ -254,7 +255,9 @@ function App() {
               {mobile && (classna === "box") && <button className='downAngle' onClick={() => setClassna("void")}><FaAngleUp /></button>}
             </div>
             <div className="activity">
-              <div className="typetitle">
+              <div style={{display:"flex"}}><Dropdown setTypeReturn={setTypeReturn} DropdownData={true} />
+              <Dropdown  DropdownData={false} setStatusType={setStatusType}/></div>
+              {/* <div className="typetitle">
                 <select onChange={changeType} className='selectBox'>
                   <option value="">All Transaction</option>
                   <option value="100">Income</option>
@@ -266,9 +269,9 @@ function App() {
                   <option value="200">Ongoing</option>
                   <option value="300">Completed</option>
                 </select>
-              </div>
-              <ShowTranction contactId={contactId} type={typeReturn} changeType={changeType} condition={newTransaction} statusType={statusType}
-                changeStatus={changeStatus} setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
+              </div> */}
+              <ShowTranction contactId={contactId} type={typeReturn}  condition={newTransaction} statusType={statusType}
+                 setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
             </div>
           </div>
           <div onClick={addNewTransaction} className='circle'><FaPlus /></div>

@@ -1,0 +1,70 @@
+.dropdown-container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    margin: 0 0 1px 5px;
+    z-index: 0;
+}
+
+.dropdown-container .dropdown-btn {
+    width: 180px;
+    height:38px;
+    border-radius: 3px;
+    background: rgb(213, 213, 213);
+    border: none;
+    text-align: left;
+    padding: 10px 15px;
+    outline: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-container .dropdown-btn:focus {
+    background: rgb(213, 213, 213);
+}
+
+.dropdown-container .arrow {
+    position: relative;
+}
+
+.dropdown-container .arrow::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 5px 0 5px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+    right: 10px;
+    top: 13px;
+}
+
+
+.dropdown-container .dropdown-list {
+    list-style-type: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 180px;
+    height: 100px;
+    background: #eee;
+    box-shadow: 0 2px 4px 0 rgba(black, .5);
+    z-index: 0;
+    overflow: auto;
+    border-radius: 3px;
+    border: 2px solid rgb(255, 255, 255);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+
+}
+
+.dropdown-container .dropdown-list .option {
+    padding: 5px 0 0 13px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.dropdown-container .dropdown-list .option:hover {
+    color: white;
+    background: #4db8ff;
+}
