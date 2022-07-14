@@ -11,7 +11,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaSignOutAlt, FaPlusCircle, FaUser, FaPlus, FaAngleDoubleDown, FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import AddTransaction from './Pages/AddTransaction';
-import Dropdown from './trial/trial';
+import Dropdown from './Dropdown/Dropdown';
 import ShowTranction from './Pages/ShowTransaction';
 import ShowByPerson from './Pages/ShowByPerson';
 function App() {

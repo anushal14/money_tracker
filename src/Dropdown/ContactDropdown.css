@@ -1,0 +1,82 @@
+.ContactDropdown-container {
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+    /* width: 280px; */
+    /* margin: 0 0 1px 5px; */
+    z-index: 0;
+}
+
+.ContactDropdown-container .dropdown-btn {
+    width: 298px;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    text-align: left;
+    padding: 10px 0px 10px 15px;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+}
+
+.ContactDropdown-container .dropdown-btn:focus {
+    border-color: #9b59b6;
+
+}
+
+.ContactDropdown-container .arrow {
+    position: relative;
+}
+
+.ContactDropdown-container .arrow::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 5px 0 5px;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+    right: 10px;
+    top: 13px;
+}
+
+
+.ContactDropdown-container .dropdown-list {
+    list-style-type: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 298px;
+    height: 300px;
+    background: #eee;
+    box-shadow: 0 2px 4px 0 rgba(black, .5);
+    z-index: 1;
+    overflow: auto;
+    border-radius: 3px;
+    border: 2px solid rgb(255, 255, 255);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+
+}
+
+.ContactDropdown-container .dropdown-list .option {
+    padding: 5px 0 5px 13px;
+    cursor: pointer;
+    font-weight: 550;
+}
+
+.ContactDropdown-container .dropdown-list .option:hover {
+    color: white;
+    background: #4db8ff;
+}
+
+@media(max-width: 584px) {
+
+    .ContactDropdown-container .dropdown-list,
+    .ContactDropdown-container .dropdown-btn {
+        width: 350px;
+    }
+
+}

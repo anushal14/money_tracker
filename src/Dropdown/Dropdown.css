@@ -8,7 +8,7 @@
 
 .dropdown-container .dropdown-btn {
     width: 180px;
-    height:38px;
+    height: 38px;
     border-radius: 3px;
     background: rgb(213, 213, 213);
     border: none;
@@ -16,7 +16,7 @@
     padding: 10px 15px;
     outline: none;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
 }
 
 .dropdown-container .dropdown-btn:focus {
@@ -54,7 +54,7 @@
     border-radius: 3px;
     border: 2px solid rgb(255, 255, 255);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
 
 }
 

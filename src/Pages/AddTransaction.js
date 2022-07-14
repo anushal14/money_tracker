@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/AddTransaction.css';
+import ContactDropdown from '../Dropdown/ContactDropdown';
 import { FaWindowClose } from 'react-icons/fa';
 import { basic_url } from '../common/constant';
 import axios from 'axios';
@@ -12,6 +13,11 @@ function AddTransaction(props) {
     lastDate: "",
     type: "100"
   });
+  const setDropdownContact = (DropdownValue) => {
+    setTransaction({
+      ...transaction, contact: DropdownValue
+    });
+  }
   const handleChange = (e) => {
     setTransaction({
       ...transaction, [e.target.name]: e.target.value
@@ -95,12 +101,13 @@ function AddTransaction(props) {
                 <div className="user-details">
                   <div className="input-box">
                     <span className="details">Contact</span>
-                    <select className='dropdown' name="contact" value={transaction.contact} onChange={handleChange} id="cars">
+                    {/* <select className='dropdown' name="contact" value={transaction.contact} onChange={handleChange} id="cars">
                       <option>Select a contact</option>
                       {contact.map((con) => (
                         <option key={con.idencode} value={con.idencode} >{con.name}</option>
                       ))}
-                    </select>
+                    </select> */}
+                    <ContactDropdown conta={contact} setDropdownContact={setDropdownContact} />
                   </div>
                   <div className="input-box">
                     <span className="details">Amount</span>
