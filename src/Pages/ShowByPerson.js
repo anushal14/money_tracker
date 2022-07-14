@@ -26,7 +26,7 @@ function ShowByPerson(props) {
         console.log('error', error.response.data)
 
       })
-  }, [])
+  }, [setNewChildTransaction])
   const completeTransaction = (e) => {
     setNewChildTransaction(true);
     setCompleted(true);
@@ -38,11 +38,9 @@ function ShowByPerson(props) {
   const [Completed, setCompleted] = useState(false);
   const [newChildTransaction, setNewChildTransaction] = useState(false);
   const onDelete = (id) => {
-    props.setShowPersonDetail(false);
     var myHeaders = new Headers();
     myHeaders.append("bearer", localStorage.getItem('bearer'));
     myHeaders.append("user-id", localStorage.getItem('user-id'));
-
     var requestOptions = {
       method: 'DELETE',
       headers: myHeaders,
@@ -50,9 +48,10 @@ function ShowByPerson(props) {
     };
 
     fetch(`${basic_url}/transactions/transactions/${id}`, requestOptions)
-      .then(response => response.json())
+      .then(response => {response.json();
+      props.setShowPersonDetail(false)})
       .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+      .catch(error => console.log('error', error));  
   }
 
   return (
@@ -97,7 +96,7 @@ function ShowByPerson(props) {
           </div>
         </div>
       </div>
-      {newChildTransaction && <AddChildTransaction Completed={Completed} balance={props.Personal.amount - props.Personal.child_transaction.amount} setNewChildTransaction={setNewChildTransaction} personal2={props.Personal2} personal={props.Personal} />}
+      {newChildTransaction && <AddChildTransaction setShowPersonDetail={props.setShowPersonDetail} Completed={Completed} balance={props.Personal.amount - props.Personal.child_transaction.amount} setNewChildTransaction={setNewChildTransaction} personal2={props.Personal2} personal={props.Personal} />}
     </div>
   )
 }

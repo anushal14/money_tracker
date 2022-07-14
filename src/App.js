@@ -74,7 +74,7 @@ function App() {
     };
 
 
-  }, [newTransaction, newContact, ShowPersonDetail])
+  }, [newTransaction===false, newContact, ShowPersonDetail])
 
   const [contactList, setContactlist] = useState([])
 
@@ -158,7 +158,10 @@ function App() {
   // const changeStatus = (e) => {
   //   setStatusType(e.target.value);
   // }
-
+  const [noteKeyword,setNoteKeyword] = useState("")
+  const changeNoteKeyword = (e) =>{
+    setNoteKeyword(e.target.value);
+  }
   const [contactId, setContactId] = useState("")
 
 
@@ -211,7 +214,7 @@ function App() {
     <div className='full'>
       <nav onScroll={handleScroll}>
         <div className="logo-name">
-          <div className="logo-image"><img src={logo} /></div>
+          <div className="logo-image"><img src={logo} alt=""/></div>
           <span className="logo_name">Money Tracker</span>
           {mobile && <div onClick={() => setSidebar(false)} style={{ fontSize: "25px", transform: "rotate(-90deg)" }}><FaAngleDown /></div>}
         </div>
@@ -225,7 +228,7 @@ function App() {
             </div>
           </ul>
           <div className='contactSearch'>
-            <img src={search} />
+            <img src={search} alt=""/>
             <input className='ContactSearchBox' type="text" name="contactName"  onChange={searchContact}  placeholder="Find a Person..." />
           </div>
           <ul className="nav-links">
@@ -253,7 +256,7 @@ function App() {
             {mobile && <div className='userDiv'><div className='userplus' onClick={() => setSidebar(true)}><FaUser /></div></div>}
             <i className="uil uil-bars sidebar-toggle"></i>
             <div className="search-box">
-              <input type="text" placeholder="Search by notes..." />
+              <input type="text" placeholder="Search by notes..." onChange={changeNoteKeyword} />
             </div>
             <div className="right-zone">
               <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img" />
@@ -289,8 +292,8 @@ function App() {
                   <option value="300">Completed</option>
                 </select>
               </div> */}
-              <ShowTranction contactId={contactId} type={typeReturn}  condition={newTransaction} statusType={statusType}
-                 setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
+              <ShowTranction contactId={contactId} type={typeReturn}  condition={newTransaction} statusType={statusType} noteKeyword={noteKeyword}
+               ShowPersonDetail={ShowPersonDetail}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
             </div>
           </div>
           <div onClick={addNewTransaction} className='circle'><FaPlus /></div>

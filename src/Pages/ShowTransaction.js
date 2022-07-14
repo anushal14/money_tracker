@@ -21,7 +21,7 @@ function ShowTranction(props) {
       headers: myHeaders,
       redirect: 'follow'
     };
-    fetch(`${basic_url}/transactions/transactions/?type=${props.type}&contact=${props.contactId}&date=&upcoming=&status=${props.statusType}`, requestOptions)
+    fetch(`${basic_url}/transactions/transactions/?type=${props.type}&contact=${props.contactId}&date=&keyword=${props.noteKeyword}&upcoming=&status=${props.statusType}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log('haaai', result);
@@ -30,7 +30,7 @@ function ShowTranction(props) {
         setPrevious(result.previous);
       })
       .catch(error => console.log('error', error));
-  }, [props.condition, props.type, props.statusType]);
+  }, [props.condition, props.type, props.statusType,props.noteKeyword,props.ShowPersonDetail===false]);
 
   const onSwitchPage = (e) => {
     var myHeaders = new Headers();

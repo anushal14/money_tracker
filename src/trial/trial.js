@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import './trial.css';
 const fonts = [{title:'All Transaction',value:"",color:""},{title:'Income',value:"100",color:"green"},{title:'Expense',value:"200",color:"red"}];
 const statusData = [{title:'Select Status',value:"", color:""},{title:'Initiated',value:"100",color:"red"},{title:'Ongoing',value:"200",color:"orange"},{title:'Completed',value:"300",color:"green"}];

@@ -29,6 +29,7 @@ function AddContacts(props) {
 
   const handleSubmit = (e) => {
     console.log(image)
+    props.setNewContact(false)
     e.preventDefault();
     var myHeaders = new Headers();
     myHeaders.append("bearer", bearer);

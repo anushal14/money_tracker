@@ -40,6 +40,7 @@ function AddTransaction(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.setNewTransaction(false)
     // console.log(transaction)
 
     var myHeaders = new Headers();

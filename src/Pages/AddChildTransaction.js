@@ -36,7 +36,7 @@ function AddChildTransaction(props) {
       setError(`Amount should be greater than 0`)
     }
     else {
-      props.setNewChildTransaction(false)
+      
       console.log(transaction.lastDate)
       console.log("date", date)
       const payload = {
@@ -60,6 +60,8 @@ function AddChildTransaction(props) {
         },
       }).then((response) => {
         console.log("hai", response);
+        props.setNewChildTransaction(false)
+        props.setShowPersonDetail(false)
       }
       )
         .catch((error) => {
