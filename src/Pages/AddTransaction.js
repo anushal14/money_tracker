@@ -116,7 +116,7 @@ function AddTransaction(props) {
                   </div>
                   <div className="input-box">
                     <span className="details">Last Date</span>
-                    <input type="date" placeholder="Enter Dtae" name="lastDate" value={transaction.lastDate} onChange={handleChange} required />
+                    <input className='formDate' type="date" placeholder="Choose a Date" name="lastDate" value={transaction.lastDate} onChange={handleChange} required />
                   </div>
                   <div className="input-box">
                     <span className="details">Type</span>

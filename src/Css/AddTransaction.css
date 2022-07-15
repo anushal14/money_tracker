@@ -34,3 +34,36 @@
     font-size: 20px;
     cursor: pointer;
 }
+
+input[type="date"] {
+    display: inline-block;
+    position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+.formDate::before {
+	color: #999999;
+	content: attr(placeholder);
+}
+.formDate {
+	color: transparent;
+}
+.formDate:focus,
+.formDate:valid {
+	color: #666666;
+}
+.formDate:focus::before,
+.formDate:valid::before {
+	content: "" !important;
+}
