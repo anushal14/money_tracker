@@ -35,6 +35,7 @@ function ContactDropdown(props) {
         <div className="ContactDropdown-container">
             <label className="arrow">
                 <textarea
+                    readOnly
                     type="button"
                     value={value}
                     className="dropdown-btn"

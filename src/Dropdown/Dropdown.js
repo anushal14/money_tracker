@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Dropdown.css';
-const fonts = [{ title: 'All Transaction', value: "", color: "" }, { title: 'Income', value: "100", color: "green" }, { title: 'Expense', value: "200", color: "red" }];
-const statusData = [{ title: 'Select Status', value: "", color: "" }, { title: 'Initiated', value: "100", color: "red" }, { title: 'Ongoing', value: "200", color: "orange" }, { title: 'Completed', value: "300", color: "green" }];
 function Dropdown(props) {
-  const mainTitle = props.DropdownData ? "All Transaction" : "Select Status"
-  const [value, setValue] = useState(mainTitle)
+  const [value, setValue] = useState()
   const [show, setShow] = useState(false)
-
-  const handleChange = (font, value) => {
-    setValue(font);
+  const [dropdownValue, setDropdownValue] = useState([])
+  useEffect(() => {
+    setDropdownValue(props.ddData);
+    setValue(props.ddData[0].title)
+  }, [])
+  const handleChange = (ddvalue, value) => {
+    setValue(ddvalue);
     setShow(false);
     props.setTypeReturn(value)
   }
-  const handleChangeStatus = (font, value) => {
-    setValue(font);
+  const handleChangeStatus = (ddvalue, value) => {
+    setValue(ddvalue);
     setShow(false);
     props.setStatusType(value)
   }
@@ -48,29 +49,18 @@ function Dropdown(props) {
           onBlur={handleBlur}
         />
       </label>
-      {props.DropdownData ? <ul className="dropdown-list" hidden={!show}>
+      <ul className="dropdown-list" hidden={!show}>
         {
-          fonts.map((font) => (
+          dropdownValue.map((ddvalue) => (
             <li
               className="option"
-              onClick={() => handleChange(font.title, font.value)}
-              style={{ color: font.color }}
+              onClick={() => props.DropdownData ? handleChange(ddvalue.title, ddvalue.value) : handleChangeStatus(ddvalue.title, ddvalue.value)}
+              style={{ color: ddvalue.color }}
             >
-              {font.title}
+              {ddvalue.title}
             </li>
           ))}
-      </ul> : <ul className="dropdown-list" hidden={!show}>
-        {
-          statusData.map((font) => (
-            <li
-              className="option"
-              onClick={() => handleChangeStatus(font.title, font.value)}
-              style={{ color: font.color }}
-            >
-              {font.title}
-            </li>
-          ))}
-      </ul>}
+      </ul>
     </div>
   );
 }

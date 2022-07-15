@@ -46,7 +46,7 @@ function AddTransaction(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.setNewTransaction(false)
+    
     // console.log(transaction)
 
     var myHeaders = new Headers();
@@ -70,18 +70,21 @@ function AddTransaction(props) {
     };
 
     fetch(`${basic_url}/transactions/transactions/`, requestOptions)
-      .then(response => response.json())
+      .then(response => {response.json()
+        props.setNewTransaction(false)
+        setTransaction(
+          {
+            contact: "",
+            amount: "",
+            note: "",
+            lastDate: "",
+            type: "100"
+          }
+        )
+      })
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
-    setTransaction(
-      {
-        contact: "",
-        amount: "",
-        note: "",
-        lastDate: "",
-        type: "100"
-      }
-    )
+    
   }
 
   const Cancel = (e) => {
@@ -101,12 +104,6 @@ function AddTransaction(props) {
                 <div className="user-details">
                   <div className="input-box">
                     <span className="details">Contact</span>
-                    {/* <select className='dropdown' name="contact" value={transaction.contact} onChange={handleChange} id="cars">
-                      <option>Select a contact</option>
-                      {contact.map((con) => (
-                        <option key={con.idencode} value={con.idencode} >{con.name}</option>
-                      ))}
-                    </select> */}
                     <ContactDropdown conta={contact} setDropdownContact={setDropdownContact} />
                   </div>
                   <div className="input-box">

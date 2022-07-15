@@ -667,18 +667,6 @@ nav.close~.dashboard .top {
     transition: var(--tran-05);
 }
 
-.selectBox {
-    margin-right: 10px;
-    width: 180px;
-    height: 28px;
-    border: 1px solid #999;
-    font-size: 18px;
-    color: #000000;
-    background-color: #eee;
-    border-radius: 5px;
-    box-shadow: 4px 4px #ccc;
-}
-
 .typetitle {
     display: flex;
     /* align-items: center; */

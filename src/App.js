@@ -10,6 +10,7 @@ import AddContacts from './Pages/AddContact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaSignOutAlt, FaPlusCircle, FaUser, FaPlus, FaAngleDoubleDown, FaAngleUp, FaAngleDown } from 'react-icons/fa';
+import { typeDropdownData, statusDropdownData } from './common/constant';
 import AddTransaction from './Pages/AddTransaction';
 import Dropdown from './Dropdown/Dropdown';
 import ShowTranction from './Pages/ShowTransaction';
@@ -74,11 +75,11 @@ function App() {
     };
 
 
-  }, [newTransaction===false, newContact, ShowPersonDetail])
+  }, [newTransaction === false, newContact, ShowPersonDetail])
 
   const [contactList, setContactlist] = useState([])
 
-  const searchContact=(e)=>{
+  const searchContact = (e) => {
     var myHeaders = new Headers();
     myHeaders.append("bearer", localStorage.getItem('bearer'));
     myHeaders.append("user-id", localStorage.getItem('user-id'));
@@ -158,8 +159,8 @@ function App() {
   // const changeStatus = (e) => {
   //   setStatusType(e.target.value);
   // }
-  const [noteKeyword,setNoteKeyword] = useState("")
-  const changeNoteKeyword = (e) =>{
+  const [noteKeyword, setNoteKeyword] = useState("")
+  const changeNoteKeyword = (e) => {
     setNoteKeyword(e.target.value);
   }
   const [contactId, setContactId] = useState("")
@@ -214,7 +215,7 @@ function App() {
     <div className='full'>
       <nav onScroll={handleScroll}>
         <div className="logo-name">
-          <div className="logo-image"><img src={logo} alt=""/></div>
+          <div className="logo-image"><img src={logo} alt="" /></div>
           <span className="logo_name">Money Tracker</span>
           {mobile && <div onClick={() => setSidebar(false)} style={{ fontSize: "25px", transform: "rotate(-90deg)" }}><FaAngleDown /></div>}
         </div>
@@ -228,8 +229,8 @@ function App() {
             </div>
           </ul>
           <div className='contactSearch'>
-            <img src={search} alt=""/>
-            <input className='ContactSearchBox' type="text" name="contactName"  onChange={searchContact}  placeholder="Find a Person..." />
+            <img src={search} alt="" />
+            <input className='ContactSearchBox' type="text" name="contactName" onChange={searchContact} placeholder="Find a Person..." />
           </div>
           <ul className="nav-links">
             {contactList.map((con) => (
@@ -277,23 +278,12 @@ function App() {
               {mobile && (classna === "box") && <button className='downAngle' onClick={() => setClassna("void")}><FaAngleUp /></button>}
             </div>
             <div className="activity">
-              <div style={{display:"flex"}}><Dropdown setTypeReturn={setTypeReturn} DropdownData={true} />
-              <Dropdown  DropdownData={false} setStatusType={setStatusType}/></div>
-              {/* <div className="typetitle">
-                <select onChange={changeType} className='selectBox'>
-                  <option value="">All Transaction</option>
-                  <option value="100">Income</option>
-                  <option value="200">Expense</option>
-                </select>
-                <select onChange={changeStatus} className='selectBox'>
-                  <option value="">Select Status</option>
-                  <option value="100">Initiated</option>
-                  <option value="200">Ongoing</option>
-                  <option value="300">Completed</option>
-                </select>
-              </div> */}
-              <ShowTranction contactId={contactId} type={typeReturn}  condition={newTransaction} statusType={statusType} noteKeyword={noteKeyword}
-               ShowPersonDetail={ShowPersonDetail}  setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
+              <div style={{ display: "flex" }}>
+                <Dropdown setTypeReturn={setTypeReturn} DropdownData={true} ddData={typeDropdownData} />
+                <Dropdown DropdownData={false} setStatusType={setStatusType} ddData={statusDropdownData} />
+              </div>
+              <ShowTranction contactId={contactId} type={typeReturn} condition={newTransaction} statusType={statusType} noteKeyword={noteKeyword}
+                ShowPersonDetail={ShowPersonDetail} setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
             </div>
           </div>
           <div onClick={addNewTransaction} className='circle'><FaPlus /></div>
