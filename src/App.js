@@ -3,6 +3,7 @@ import axios from 'axios';
 import Dialog from './Pages/Dialogue';
 import userImg from './images/user.png';
 import logo from './images/logo.png';
+import Book from './images/Book.gif';
 import search from './images/search.png';
 import { basic_url } from './common/constant';
 import { Navigate } from 'react-router-dom';
@@ -23,6 +24,7 @@ function App() {
   const [mobile, setMobile] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const [total, setTotal] = useState([]);
+  const [dashboardLoading, setDashboardLoading] = useState(true);
   //   disable back button
   window.history.pushState(null, null, window.location.href);
   window.onpopstate = function (event) {
@@ -33,6 +35,11 @@ function App() {
     if (window.innerWidth < 1000) {
       setMobile(true);
     }
+
+    const timer = setTimeout(() => {
+      setClassna("box")
+    }, 2100);
+    return () => clearTimeout(timer);
   }, [])
 
   useEffect(() => {
@@ -51,6 +58,7 @@ function App() {
       .then(result => {
         console.log(result);
         setTotal(result);
+
       }).catch(error => console.log('error', error));
 
     fetch(`${basic_url}accounts/contact/`, requestOptions)
@@ -59,6 +67,7 @@ function App() {
         console.log(result);
         setContactlist(result.results);
         setNext(result.next);
+        setDashboardLoading(false)
       }).catch(error => console.log('error', error));
 
     const handleSize = () => {
@@ -211,88 +220,92 @@ function App() {
     </div>
   }
 
-  return (
-    <div className='full'>
-      <nav onScroll={handleScroll}>
-        <div className="logo-name">
-          <div className="logo-image"><img src={logo} alt="" /></div>
-          <span className="logo_name">Money Tracker</span>
-          {mobile && <div onClick={() => setSidebar(false)} style={{ fontSize: "25px", transform: "rotate(-90deg)" }}><FaAngleDown /></div>}
-        </div>
-        <div className="menu-items">
-          <ul className="logout-mode">
-            <div className="contactMode">
-              <span className="contacts">Contacts</span>
-              <div className="mode-toggle">
-                <div onClick={addContact} className='plus'><FaPlusCircle /></div>
+  return (<div>
+    {dashboardLoading ? <div style={{ justifyContent: "center", alignItems: "center", display: "flex", height: "100vh" }}>
+      <img src={Book} alt="Loading"height={50} width={50} />
+    </div> :
+      <div className='full'>
+        <nav onScroll={handleScroll}>
+          <div className="logo-name">
+            <div className="logo-image"><img src={logo} alt="" /></div>
+            <span className="logo_name">Money Tracker</span>
+            {mobile && <div onClick={() => setSidebar(false)} style={{ fontSize: "25px", transform: "rotate(-90deg)" }}><FaAngleDown /></div>}
+          </div>
+          <div className="menu-items">
+            <ul className="logout-mode">
+              <div className="contactMode">
+                <span className="contacts">Contacts</span>
+                <div className="mode-toggle">
+                  <div onClick={addContact} className='plus'><FaPlusCircle /></div>
+                </div>
+              </div>
+            </ul>
+            <div className='contactSearch'>
+              <img src={search} alt="" />
+              <input className='ContactSearchBox' type="text" name="contactName" onChange={searchContact} placeholder="Find a Person..." />
+            </div>
+            <ul className="nav-links">
+              {contactList.map((con) => (
+                <li className="mode" key={con.idencode} onClick={() => (setContactId(con.idencode), setSidebar(false))}><a href='#'>
+                  <i className="uil uil-estate"></i>
+                  <div className='contactdetails'>
+                    <span className="link-name">{con.name}</span>
+                    <div className='Contact_inc_exp'>
+                      <span style={{ color: "black" }}>Balance: <span style={{ color: `${con.transactions_detail.type === 100 ? "darkgreen" : "red"}` }}>&#8377;{con.transactions_detail.amount ? con.transactions_detail.amount : 0}</span></span>
+                    </div>
+                  </div>
+                </a>
+                  <div className="mode-toggle">
+                    <img src={(con.image !== null) ? con.image : userImg} alt="" className="user-img" />
+                  </div></li>
+              ))}
+              <div>{loading}</div>
+            </ul>
+          </div>
+        </nav>
+        {!sidebar &&
+          <section className="dashboard">
+            <div className="top">
+              {mobile && <div className='userDiv'><div className='userplus' onClick={() => setSidebar(true)}><FaUser /></div></div>}
+              <i className="uil uil-bars sidebar-toggle"></i>
+              <div className="search-box">
+                <input type="text" placeholder="Search by notes..." onChange={changeNoteKeyword} />
+              </div>
+              <div className="right-zone">
+                <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img" />
+                <div className="notification" onClick={() => setDialogue(true)}><FaSignOutAlt /></div>
               </div>
             </div>
-          </ul>
-          <div className='contactSearch'>
-            <img src={search} alt="" />
-            <input className='ContactSearchBox' type="text" name="contactName" onChange={searchContact} placeholder="Find a Person..." />
-          </div>
-          <ul className="nav-links">
-            {contactList.map((con) => (
-              <li className="mode" key={con.idencode} onClick={() => (setContactId(con.idencode), setSidebar(false))}><a href='#'>
-                <i className="uil uil-estate"></i>
-                <div className='contactdetails'>
-                  <span className="link-name">{con.name}</span>
-                  <div className='Contact_inc_exp'>
-                    <span style={{ color: "black" }}>Balance: <span style={{ color: `${con.transactions_detail.type === 100 ? "darkgreen" : "red"}` }}>&#8377;{con.transactions_detail.amount ? con.transactions_detail.amount : 0}</span></span>
+            <div className="dash-content">
+              <div className="overview">
+                {mobile && (classna === "void") && <button className='downAngle' onClick={() => setClassna("box")}><FaAngleDoubleDown /></button>}
+                <div className="boxes">
+                  <div className={mobile ? classna : "box"}>
+                    <span className="number">&#8377;{total.Total_income}</span>
+                  </div>
+                  <div className={mobile ? classna : "box"} style={{ backgroundColor: "rgba(222, 0, 0, 0.6)" }}>
+                    <span className="number">&#8377;{total.total_expense}</span>
                   </div>
                 </div>
-              </a>
-                <div className="mode-toggle">
-                  <img src={(con.image !== null) ? con.image : userImg} alt="" className="user-img" />
-                </div></li>
-            ))}
-            <div>{loading}</div>
-          </ul>
-        </div>
-      </nav>
-      {!sidebar &&
-        <section className="dashboard">
-          <div className="top">
-            {mobile && <div className='userDiv'><div className='userplus' onClick={() => setSidebar(true)}><FaUser /></div></div>}
-            <i className="uil uil-bars sidebar-toggle"></i>
-            <div className="search-box">
-              <input type="text" placeholder="Search by notes..." onChange={changeNoteKeyword} />
-            </div>
-            <div className="right-zone">
-              <img src="https://randomuser.me/api/portraits/women/71.jpg" alt="" className="user-img" />
-              <div className="notification" onClick={() => setDialogue(true)}><FaSignOutAlt /></div>
-            </div>
-          </div>
-          <div className="dash-content">
-            <div className="overview">
-              {mobile && (classna === "void") && <button className='downAngle' onClick={() => setClassna("box")}><FaAngleDoubleDown /></button>}
-              <div className="boxes">
-                <div className={mobile ? classna : "box"}>
-                  <span className="number">&#8377;{total.Total_income}</span>
-                </div>
-                <div className={mobile ? classna : "box"} style={{ backgroundColor: "rgba(222, 0, 0, 0.6)" }}>
-                  <span className="number">&#8377;{total.total_expense}</span>
-                </div>
+                {mobile && (classna === "box") && <button className='downAngle' onClick={() => setClassna("void")}><FaAngleUp /></button>}
               </div>
-              {mobile && (classna === "box") && <button className='downAngle' onClick={() => setClassna("void")}><FaAngleUp /></button>}
-            </div>
-            <div className="activity">
-              <div style={{ display: "flex" }}>
-                <Dropdown setTypeReturn={setTypeReturn} DropdownData={true} ddData={typeDropdownData} />
-                <Dropdown DropdownData={false} setStatusType={setStatusType} ddData={statusDropdownData} />
+              <div className="activity">
+                <div style={{ display: "flex" }}>
+                  <Dropdown setTypeReturn={setTypeReturn} DropdownData={true} ddData={typeDropdownData} />
+                  <Dropdown DropdownData={false} setStatusType={setStatusType} ddData={statusDropdownData} />
+                </div>
+                <ShowTranction contactId={contactId} type={typeReturn} condition={newTransaction} statusType={statusType} noteKeyword={noteKeyword}
+                  ShowPersonDetail={ShowPersonDetail} setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
               </div>
-              <ShowTranction contactId={contactId} type={typeReturn} condition={newTransaction} statusType={statusType} noteKeyword={noteKeyword}
-                ShowPersonDetail={ShowPersonDetail} setShowPersonDetail={setShowPersonDetail} onShowPersonal={getPersonalData} onShowPersonal2={getPersonalData2} />
             </div>
-          </div>
-          <div onClick={addNewTransaction} className='circle'><FaPlus /></div>
-        </section>}
-      {ShowPersonDetail && <ShowByPerson Personal={Personal} Personal2={Personal2} setShowPersonDetail={setShowPersonDetail} />}
-      {newContact && <AddContacts setNewContact={setNewContact} />}
-      {newTransaction && <AddTransaction setNewTransaction={setNewTransaction} contactList={contactList} />}
-      {dialogue && <Dialog onDialog={setDialogue} onLogout={onLogout} />}
-    </div>
+            <div onClick={addNewTransaction} className='circle'><FaPlus /></div>
+          </section>}
+        {ShowPersonDetail && <ShowByPerson Personal={Personal} Personal2={Personal2} setShowPersonDetail={setShowPersonDetail} />}
+        {newContact && <AddContacts setNewContact={setNewContact} />}
+        {newTransaction && <AddTransaction setNewTransaction={setNewTransaction} contactList={contactList} />}
+        {dialogue && <Dialog onDialog={setDialogue} onLogout={onLogout} />}
+      </div>
+    }</div>
   );
 }
 
