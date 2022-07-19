@@ -4,7 +4,7 @@ import { FaWindowClose, FaTrash, FaPlus } from 'react-icons/fa';
 import { basic_url } from '../common/constant';
 import axios from 'axios';
 import userImg from '../images/user.png'
-import AddChildTransaction from "./AddChildTransaction";
+import AddChildTransaction from "../Components/AddChildTransaction";
 function ShowByPerson(props) {
   const [contact, setContact] = useState([]);
   useEffect(() => {

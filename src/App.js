@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Dialog from './Pages/Dialogue';
+import Contact from './Components/Contact';
+import Dialog from './Components/Dialogue';
 import userImg from './images/user.png';
 import logo from './images/logo.png';
 import Book from './images/Book.gif';
 import search from './images/search.png';
 import { basic_url } from './common/constant';
 import { Navigate } from 'react-router-dom';
-import AddContacts from './Pages/AddContact';
+import AddContacts from './Components/AddContact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaSignOutAlt, FaPlusCircle, FaUser, FaPlus, FaAngleDoubleDown, FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import { typeDropdownData, statusDropdownData } from './common/constant';
-import AddTransaction from './Pages/AddTransaction';
+import AddTransaction from './Components/AddTransaction';
 import Dropdown from './Dropdown/Dropdown';
-import ShowTranction from './Pages/ShowTransaction';
-import ShowByPerson from './Pages/ShowByPerson';
+import ShowTranction from './Components/ShowTransaction';
+import ShowByPerson from './Components/ShowByPerson';
 function App() {
   const [newContact, setNewContact] = useState(false);
   const [newTransaction, setNewTransaction] = useState(false);
@@ -61,7 +62,7 @@ function App() {
 
       }).catch(error => console.log('error', error));
 
-    fetch(`${basic_url}accounts/contact/`, requestOptions)
+    fetch(`${basic_url}accounts/contact/?&list_by=100&order_by=700`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result);
@@ -98,7 +99,7 @@ function App() {
       headers: myHeaders,
       redirect: 'follow'
     };
-    fetch(`${basic_url}accounts/contact/?name=${e.target.value}`, requestOptions)
+    fetch(`${basic_url}accounts/contact/?name=${e.target.value}&list_by=100&order_by=700`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result);
@@ -222,7 +223,7 @@ function App() {
 
   return (<div>
     {dashboardLoading ? <div style={{ justifyContent: "center", alignItems: "center", display: "flex", height: "100vh" }}>
-      <img src={Book} alt="Loading"height={50} width={50} />
+      <img src={Book} alt="Loading" height={50} width={50} />
     </div> :
       <div className='full'>
         <nav onScroll={handleScroll}>
@@ -231,7 +232,8 @@ function App() {
             <span className="logo_name">Money Tracker</span>
             {mobile && <div onClick={() => setSidebar(false)} style={{ fontSize: "25px", transform: "rotate(-90deg)" }}><FaAngleDown /></div>}
           </div>
-          <div className="menu-items">
+          <Contact loading={loading} addContact={addContact} searchContact={searchContact} contactList={contactList} setContactId={setContactId} setSidebar={setSidebar} />
+          {/* <div className="menu-items">
             <ul className="logout-mode">
               <div className="contactMode">
                 <span className="contacts">Contacts</span>
@@ -261,7 +263,7 @@ function App() {
               ))}
               <div>{loading}</div>
             </ul>
-          </div>
+          </div> */}
         </nav>
         {!sidebar &&
           <section className="dashboard">
@@ -281,10 +283,10 @@ function App() {
                 {mobile && (classna === "void") && <button className='downAngle' onClick={() => setClassna("box")}><FaAngleDoubleDown /></button>}
                 <div className="boxes">
                   <div className={mobile ? classna : "box"}>
-                    <span className="number">&#8377;{total.Total_income}</span>
+                    <span className="number">&#8377;{total.Total_income ? total.Total_income : "0"}</span>
                   </div>
                   <div className={mobile ? classna : "box"} style={{ backgroundColor: "rgba(222, 0, 0, 0.6)" }}>
-                    <span className="number">&#8377;{total.total_expense}</span>
+                    <span className="number">&#8377;{total.total_expense ? total.total_expense : "0"}</span>
                   </div>
                 </div>
                 {mobile && (classna === "box") && <button className='downAngle' onClick={() => setClassna("void")}><FaAngleUp /></button>}
