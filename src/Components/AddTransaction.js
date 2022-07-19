@@ -26,7 +26,7 @@ function AddTransaction(props) {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `${basic_url}/accounts/contact/list/?limit=1000&offset=''`,
+      url: `${basic_url}/accounts/contact/?limit=1000&list_by=100&order_by=700`,
       headers: {
         //  'Authorization': `bearer ${token}`,
         'bearer': localStorage.getItem('bearer'),
@@ -46,7 +46,7 @@ function AddTransaction(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // console.log(transaction)
 
     var myHeaders = new Headers();
@@ -70,7 +70,8 @@ function AddTransaction(props) {
     };
 
     fetch(`${basic_url}/transactions/transactions/`, requestOptions)
-      .then(response => {response.json()
+      .then(response => {
+        response.json()
         props.setNewTransaction(false)
         setTransaction(
           {
@@ -84,7 +85,7 @@ function AddTransaction(props) {
       })
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
-    
+
   }
 
   const Cancel = (e) => {

@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Contact from './Components/Contact';
 import Dialog from './Components/Dialogue';
-import userImg from './images/user.png';
 import logo from './images/logo.png';
 import Book from './images/Book.gif';
-import search from './images/search.png';
 import { basic_url } from './common/constant';
 import { Navigate } from 'react-router-dom';
 import AddContacts from './Components/AddContact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaSignOutAlt, FaPlusCircle, FaUser, FaPlus, FaAngleDoubleDown, FaAngleUp, FaAngleDown } from 'react-icons/fa';
+import { FaSignOutAlt, FaUser, FaPlus, FaAngleDoubleDown, FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import { typeDropdownData, statusDropdownData } from './common/constant';
 import AddTransaction from './Components/AddTransaction';
 import Dropdown from './Dropdown/Dropdown';
@@ -110,23 +108,6 @@ function App() {
 
   const addNewTransaction = () => {
     setNewTransaction(true);
-    var myHeaders = new Headers();
-    myHeaders.append("bearer", localStorage.getItem('bearer'));
-    myHeaders.append("user-id", localStorage.getItem('user-id'));
-
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-    fetch(`${basic_url}accounts/contact/`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        console.log(result);
-        setContactlist(result.results);
-      })
-      .catch(error => console.log('error', error));
   }
 
   const [logout, setLogout] = useState(false);
@@ -149,8 +130,6 @@ function App() {
     localStorage.clear();
     setLogout(true);
   }
-
-
   //for transaction details
   const [Personal, setPersonal] = useState([]);
   const getPersonalData = (data) => {
@@ -162,20 +141,12 @@ function App() {
     setPersonal2(data);
   }
   const [typeReturn, setTypeReturn] = useState("")
-  // const changeType = (e) => {
-  //   setTypeReturn(e.target.value);
-  // }
   const [statusType, setStatusType] = useState("")
-  // const changeStatus = (e) => {
-  //   setStatusType(e.target.value);
-  // }
   const [noteKeyword, setNoteKeyword] = useState("")
   const changeNoteKeyword = (e) => {
     setNoteKeyword(e.target.value);
   }
   const [contactId, setContactId] = useState("")
-
-
   const [next, setNext] = useState("");
   const [loading, setLoading] = useState("")
   const onSwitchPage = (e) => {
@@ -233,37 +204,6 @@ function App() {
             {mobile && <div onClick={() => setSidebar(false)} style={{ fontSize: "25px", transform: "rotate(-90deg)" }}><FaAngleDown /></div>}
           </div>
           <Contact loading={loading} addContact={addContact} searchContact={searchContact} contactList={contactList} setContactId={setContactId} setSidebar={setSidebar} />
-          {/* <div className="menu-items">
-            <ul className="logout-mode">
-              <div className="contactMode">
-                <span className="contacts">Contacts</span>
-                <div className="mode-toggle">
-                  <div onClick={addContact} className='plus'><FaPlusCircle /></div>
-                </div>
-              </div>
-            </ul>
-            <div className='contactSearch'>
-              <img src={search} alt="" />
-              <input className='ContactSearchBox' type="text" name="contactName" onChange={searchContact} placeholder="Find a Person..." />
-            </div>
-            <ul className="nav-links">
-              {contactList.map((con) => (
-                <li className="mode" key={con.idencode} onClick={() => (setContactId(con.idencode), setSidebar(false))}><a href='#'>
-                  <i className="uil uil-estate"></i>
-                  <div className='contactdetails'>
-                    <span className="link-name">{con.name}</span>
-                    <div className='Contact_inc_exp'>
-                      <span style={{ color: "black" }}>Balance: <span style={{ color: `${con.transactions_detail.type === 100 ? "darkgreen" : "red"}` }}>&#8377;{con.transactions_detail.amount ? con.transactions_detail.amount : 0}</span></span>
-                    </div>
-                  </div>
-                </a>
-                  <div className="mode-toggle">
-                    <img src={(con.image !== null) ? con.image : userImg} alt="" className="user-img" />
-                  </div></li>
-              ))}
-              <div>{loading}</div>
-            </ul>
-          </div> */}
         </nav>
         {!sidebar &&
           <section className="dashboard">
@@ -304,7 +244,7 @@ function App() {
           </section>}
         {ShowPersonDetail && <ShowByPerson Personal={Personal} Personal2={Personal2} setShowPersonDetail={setShowPersonDetail} />}
         {newContact && <AddContacts setNewContact={setNewContact} />}
-        {newTransaction && <AddTransaction setNewTransaction={setNewTransaction} contactList={contactList} />}
+        {newTransaction && <AddTransaction setNewTransaction={setNewTransaction} />}
         {dialogue && <Dialog onDialog={setDialogue} onLogout={onLogout} />}
       </div>
     }</div>
