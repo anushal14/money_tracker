@@ -2,8 +2,8 @@ export const basic_url = "https://money-track-project.herokuapp.com/"
 
 export const typeDropdownData = [
     { title: 'All Transaction', value: "", color: "" },
-    { title: 'Income', value: "100", color: "green" },
-    { title: 'Expense', value: "200", color: "red" }
+    { title: 'Credit', value: "100", color: "green" },
+    { title: 'Debit', value: "200", color: "red" }
 ]
 
 export const statusDropdownData = [

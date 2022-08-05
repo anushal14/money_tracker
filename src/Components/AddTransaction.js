@@ -122,8 +122,8 @@ function AddTransaction(props) {
                   <div className="input-box">
                     <span className="details">Type</span>
                     <select className='dropdown' name="type" value={transaction.type} onChange={handleChange} >
-                      <option value="100">Income</option>
-                      <option value="200">Expense</option>
+                      <option value="100">Credit</option>
+                      <option value="200">Debit</option>
                     </select>
                   </div>
                 </div>
