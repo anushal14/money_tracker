@@ -6,7 +6,7 @@ import '../Css/AddTransaction.css'
 function AddChildTransaction(props) {
   const amountValue = props.Completed ? props.balance : ""
   const current = new Date();
-  const date = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
+  const date = `${current.getFullYear()}-${current.getMonth() + 1}-0${current.getDate()}`;
   const [transaction, setTransaction] = useState({
     contact: props.personal2,
     parentTransaction: props.personal.idencode,
@@ -97,10 +97,10 @@ function AddChildTransaction(props) {
                       <span className="details">Note</span>
                       <input type="text" placeholder="Enter any notes" name="note" value={transaction.note} onChange={handleChange} required />
                     </div>
-                    <div className="input-box">
+                    {/* <div className="input-box">
                       <span className="details">Date</span>
                       <input type="date" placeholder="Enter Dtae" name="lastDate" value={transaction.lastDate} readOnly required />
-                    </div>
+                    </div> */}
                   </div>
                   <div className="button" onClick={handleSubmit}>
                     <input type="submit" value="Add" />
@@ -113,10 +113,10 @@ function AddChildTransaction(props) {
                       <span className="details">Note</span>
                       <input type="text" placeholder="Enter any notes" name="note" value={transaction.note} onChange={handleChange} required />
                     </div>
-                    <div className="input-box">
+                    {/* <div className="input-box">
                       <span className="details">Date</span>
                       <input type="date" placeholder="Enter Dtae" name="lastDate" value={transaction.lastDate} readOnly required />
-                    </div>
+                    </div> */}
                   </div>
                   <div className="button" onClick={handleSubmit}>
                     <input type="submit" value="Add" />
